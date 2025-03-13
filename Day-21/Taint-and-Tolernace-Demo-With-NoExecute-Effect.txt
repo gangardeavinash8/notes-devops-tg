@@ -1,0 +1,35 @@
+Scheduling topologies :
+
+	1. nodeName
+	2. nodeSelector
+	3. cordon / uncordon
+	4. taint and tolerance 
+	
+		Effects:
+			NoSchedule  -->  toleration
+			NoExecute -->  Migration app / data backup from one node to another 
+			PreferNoSchedule --> Soft version of NoSchedule 
+
+How to apply taint on workernode:
+		
+	kubectl taint no wn2.tg.com high=intenvise:NoExecute -n mynewtg
+
+	kubectl describe no wn2.tg.com |  less
+	
+How to remove taint from node ?
+
+	kubectl taint no wn2.tg.com high=intenvise:NoExecute-  -n mynewtg
+
+	kubectl taint no wn3.tg.com unreachable:NoExecute-  -n mynewtg
+
+
+high    =  		intenvise
+key    equal      value
+
+----------------------------------------------------------------------
+     tolerations:
+      - key: high
+        operator: Equal
+        value: intensive
+        effect: NoSchedule
+

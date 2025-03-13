@@ -1,0 +1,20 @@
+Shell Script:
+
+	var define  ($)
+	console input / user keyboard input 
+	function
+	loop  -> for / while
+	switch case 
+	if then else 
+	
+	cp, mv,rm , chmod, pwd, id, date, cal , whoami, ifconfig
+	>
+	<
+	>>
+	cat
+	echo 
+---------------------------
+
+Link for download Centos OVA file 
+
+https://drive.google.com/file/d/1CbceIK5DTF_KNi_Qx1o1dVndO8HuYokM/view?usp=drive_link

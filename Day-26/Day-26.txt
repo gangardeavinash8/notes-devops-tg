@@ -1,0 +1,27 @@
+CI and CD
+	CI  = git (push)  + jenkins (build) + jebkin (push on DH)
+	
+	CD = Conti. Delivery (Release of test / uat / acc / preprod)
+	CD = Conti deployment (Build for Prod)
+
+
+Custom build pull from Dockerhub using secret  
+
+
+Step-1  install docker and git on Jenkins server 
+
+Step-2  Login on command line 
+
+Step-3 when you create pipeline in jenkins
+		remember to put git url path with https:// instead of ssh access	
+		
+Step-4  goto github and fork my simple project 
+		
+		https://github.com/cdtsbikaner/tomcat8.git
+
+Step-5  Create simple freestyle pipeline
+
+#!/bin/bash
+echo "This build number is  ---> " ${JOB_NAME}-${BUILD_NUMBER}
+hostname
+pwd

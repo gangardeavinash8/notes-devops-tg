@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+    env: prod
+  name: mysql
+  namespace: mynewtg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: mysql
+        env: prod
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        ports:
+         - containerPort: 3306
+        env: 
+         - name: MYSQL_ROOT_PASSWORD
+           valueFrom:
+            configMapKeyRef:
+             name: dbdata
+             key: password 

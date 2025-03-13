@@ -1,0 +1,145 @@
+-> Add a new worker node
+-> dry run to generate yaml / json for deployment ?
+-> label , selector, nodeName, 
+-> Replica Controller 
+--------------------------------------
+cdtsbikaner@gmail.com
+---------------------------------------
+
+kubectl api-resources |  less
+
+kubectl  get no
+
+kubectl get ns 
+
+kubectl create ns mynewtg
+
+kubectl get po -n mynewtg 
+
+kubectl get po --all-namespaces
+
+
+If we forget token then new token can generate :
+
+	kubeadm token create --print-join-command
+
+kubeadm join 172.31.26.98:6443 --token nfr8us.ptxzk4s0zxwijm6x --discovery-token-ca-cert-hash sha256:c9b868be8c903eea6066a075c7aa3883fa206e9b917db7fa5aa659be0b1fe624
+---------------------------------------------------------------------------------------------
+kubectl cluster-info
+
+kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o yaml
+
+kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o json
+
+kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o yaml  > myapp2.yaml
+
+watch -n1 kubectl get po -n mynewtg  -o wide
+
+
+kubectl  describe po myapp2 -n mynewtg   |  less
+
+For k8s logs /cron
+
+	kubectl  get events -n mynewtg
+
+kubectl  delete po myapp2  -n mynewtg
+
+------------------------------------------------------------
+
+By using labeling we can locate / search any object (pod / node  / ns).
+
+labels are similar to tags in AWS.
+
+Object can have multple labels.
+
+What object can have labels in k8s cluster ?
+
+	node ns  pod 
+--------------------------------------------------------------	
+	labels are in key pair format 
+	
+	kubectl label no wn2.tg.com  disk=ssd
+
+	 kubectl  get no  -L  disk
+
+	kubectl describe no wn1.tg.com |  less
+
+unlabeled
+
+	kubectl label no wn1.tg.com  ram-
+
+	kubectl label no wn2.tg.com  disk-
+---------------------------------------------------------
+
+	How to edit node ?
+	
+		kubectl edit no wn1.tg.com
+	How to edit po run  time  ?
+	
+		kubectl edit  po myapp2  -n mynewtg
+--------------------------------------------------------
+
+Pod schedule topologies 
+
+1) nodeName:
+	
+	spec:
+		nodeName: wn2.tg.com 
+	
+	drawback :
+			a)  we can write one nodeName at a time, no list can define here.
+
+2)  nodeSelector  ( it will select the label )
+
+	You can apply labels on the worker nodes , so that on the basis of the labels you can deploy the application. 
+	
+	vi  myapp3.yaml
+	
+		spec: 
+			nodeSelector:
+			   disk=ssd 
+			 
+	We can write one label here for select / choose worker node. 
+	
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp4-yahoo
+  namespace:  mynewtg
+  labels:
+    env: prod
+spec:
+  containers:
+  - name: myapp4-yahoo
+    image: cdtsbikaner/devops150624:nginxtestv1.2
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disk: ssd
+	
+	
+3) corden / uncorden 
+work only on NODES (worker node / data plane)
+
+
+kubectl  cordon wn1.tg.com
+
+
+kubectl  describe no wn1.tg.com |  less
+
+
+ kubectl  describe no wn2.tg.com |  less
+
+
+kubectl  get po --all-namespaces
+
+4) taint and tolerance 
+
+key  =  noSchedule 
+-------------------------------------------------------
+
+volume mount inside pod 
+replicacontroller 
+deployment 
+
+networking NodeIP
+-------------------------------------------------------

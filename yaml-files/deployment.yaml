@@ -1,0 +1,22 @@
+apiVersion: app/v1
+kind: Depoyment
+metadata:
+  name: myapp10
+  namespace: mynewtg
+spec:
+  replicas: 5
+  selector:
+   matchlables:
+     env: prod
+     app: nginx
+  template:
+   metadata:
+    labels:
+     env: prod
+     app: nginx
+  spec:
+    containers:
+      - name: c1
+        image: nginx:1.14
+        Ports:
+          - containerPort: 80

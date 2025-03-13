@@ -1,0 +1,62 @@
+3306/TCP
+
+RDBMS 
+
+	mysql:5.7
+	mariadb
+
+-----------------------
+
+mysql -u root -p
+
+mysql> show databases ;
+
+
+mysql>  use  college ;
+
+ show tables ;
+ 
+ create table std (sid int(10) , stdname varchar(255),  mobile varchar(255) ) ;
+
+insert into std set  sid  = '101' , stdname  = 'ekam' , mobile = '98989898' ;
+insert into std set  sid  = '102' , stdname  = 'harman' , mobile = '98989898' ;
+insert into std set  sid  = '103' , stdname  = 'ravi' , mobile = '98989898' ;
+insert into std set  sid  = '104' , stdname  = 'prateek' , mobile = '98989898' ;
+insert into std set  sid  = '105' , stdname  = 'richa' , mobile = '98989898' ;
+insert into std set  sid  = '106' , stdname  = 'ratandeep' , mobile = '98989898' ;
+insert into std set  sid  = '107' , stdname  = 'sumit' , mobile = '98989898' ;
+insert into std set  sid  = '108' , stdname  = 'gurpreet' , mobile = '98989898' ;
+
+
+-------------------------------------------------------
+
+
+--------------------------------------------------------
+volume :
+
+	docker volume ls
+	
+	docker volume create ekam
+
+	docker run --name c5  -dit  -v  /opt:/var/www/html  24c7248612aa 
+	
+docker docker run --name c4  -dit  --mount type=bind,source=/mydata,target=/var/www/html,readonly  24c7248612aa
+
+
+
+	( Note:  when we run above command automatically /movies will create under container and file system will in read only )
+	
+-----------------------------------------------------------
+
+Assignment-1
+	build mysql image using centos / rockylinux / ubuntu
+	3306
+	/var/lib/mysql 
+
+Assignment-2
+	NodeJS
+	test python script and run it on port 3000
+	
+------------------------------------------------------------
+KINDLY SHARE YOU DOCKERHUB REPO NAME at cdtsbikaner@gmail.com
+------------------------------------------------------------

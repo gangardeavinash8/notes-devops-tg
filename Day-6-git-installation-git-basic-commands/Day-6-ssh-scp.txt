@@ -1,0 +1,99 @@
+		Cryptography 
+		/		  \
+	 Symetric 	   Asymetric
+       
+		Single			Public key   (Email ID)
+		key				private key  ( Password)
+
+
+------------------------------------------
+
+Normal Text --->  Cipher Text   ----->  Normal text 
+					encrypt					decrypt
+					(encode)				(decode)
+  HELLO				 **$#%)#%			 	HELLO	
+------------------------------------------
+ssh ( secure shell )
+port no :  22 (TCP)
+
+Where we can use it  ?
+Linux to Linux 
+Linux to Unix 
+
+package name :   openssh  
+
+service -->  sshd 
+
+systemctl   status sshd 
+
+systemctl  stop sshd 
+
+systemctl  start  sshd 
+
+systemctl   reload sshd 
+
+Config files: 
+	
+		cat  /etc/ssh/sshd_config 
+	
+How to generate public / private key ( Asymetric )
+
+	ssh-keygent -t rsa 
+	
+	
+
+-----------------------------------------
+	 Hostname setup  ?
+	 
+	 hostname 
+	 
+	 hostnamectl set-hostname  master.tg.com
+
+	 bash 
+	
+	 hostname 
+	
+Now login to second instance :
+
+	 hostnamectl set-hostname  client1.tg.com
+	
+	 hostname 
+	 
+	 bash 
+-----------------------------------------------
+After set hostname for ssh b/w two machine we need to update
+
+	/etc/hosts      --->  Domain alias 
+
+
+172.31.0.185  master.tg.com
+172.31.13.132 client1.tg.com 	
+
+Copy and paste both above lines in each machine at /etc/hosts 
+
+
+------------------------------------------
+Server-1 
+
+ssh-keygen -t rsa
+  
+  public key  -->   /root/.ssh/id_rsa.pub 
+  
+  private key -->   /root/.ssh/id_rsa 
+  
+  Hint -->  Copy public key from server-1 and paster in server-2 as below :
+  
+Server-2
+
+vi /root/.ssh/authorized_keys
+
+	paste your master server public key
+	
+	
+Hint: 
+		ssh-copy-id  -i  /root/.ssh/id_rsa.pub   root@172.12.14.1
+-------------------------------------------	
+ 
+ Application Serevr  -->  java  8080
+ 
+ Mysql  / mariadb   -->   3306 

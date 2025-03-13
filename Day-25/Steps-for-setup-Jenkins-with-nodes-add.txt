@@ -1,0 +1,135 @@
+Step-1  create a ec2 machine (4Gb  + 2 CPU) 
+
+Step-2 notdown IP address and set hostname 
+
+Step-3  edit /etc/hosts for this new machine and for k8s master  + wn nodes
+
+Step-4  Edit SG and add port 22 for whitelist the Security Group '
+
+Step-5  yum update -y
+
+Step-6  java install ( headless kernel )
+
+ yum install java-17-amazon-corretto-headless  -y
+ 
+ 
+ yum install java-17-amazon-corretto-devel  -y
+ 
+note:  if multiple version of java available then you may select as following:
+
+	alternatives  --config java
+
+Step-7   Env variable set up for jenkins (tomcat) 
+	
+	vi  /root/.bash_profile
+	
+	export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
+
+Step-8  compiled and echo variable
+
+	source /root/.bash_profile
+	
+	echo $JAVA_HOME
+	
+Step-9  import repo and install jenkins 
+
+
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io-2023.key
+
+
+Step-10  start the services of jenkins 
+
+ systemctl  start jenkins.service
+ systemctl  enable jenkins.service
+ systemctl status  jenkins.service
+
+
+Step-11  Check  jenkins user from  /etc/passwd 
+
+
+cat /etc/passwd | tail -5
+
+
+jenkins:x:995:993:Jenkins Automation Server:/var/lib/jenkins:/bin/false
+
+
+Step-12   how to enable shell for jenkins user  ?
+
+	usermod  -s  /bin/bash  jenkins
+
+Home Dir of jenkins user =  /var/lib/jenkins
+
+
+Step-13   now create this jenkins user as sudo-user 
+
+	vi  /etc/sudoers.d/jekins
+	
+Step-14 Now login with jenkins user 
+
+		su - jenkins 
+		
+		pwd
+		
+Step-15  Now ssh to k8s master node remotely 
+
+		ssh root@master.tg.com
+		
+	You will get error  ?
+
+Then you need to generate public  + private and share again with master node k8s 
+
+
+Step-16   su - jenkins 
+
+		  pwd
+		  
+		  ssh-keygen -t rsa 
+		  
+Now copy public key of jenkins user and paste under -->  master.tg.com:/root/authorized_key 
+		  
+
+		  
+Step-17  netstat   -plant 
+
+	you will find 8080 port 
+	
+	now acces with Public IP with 8080  port on browser 
+
+Step18 :  http://54.198.231.199:8080/
+
+		it require password, and you will find on following
+		
+	 cat  /var/lib/jenkins/secrets/initialAdminPassword
+
+
+Step-19 Now add new agent in Jenkins 
+
+A)   java install ( headless kernel )
+
+ yum install java-17-amazon-corretto-headless  -y
+ 
+ 
+ yum install java-17-amazon-corretto-devel  -y
+ 
+note:  if multiple version of java available then you may select as following:
+
+	alternatives  --config java
+
+B)   Env variable set up for jenkins (tomcat) 
+	
+	vi  /root/.bash_profile
+	
+	export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
+
+C)  compiled and echo variable
+
+	source /root/.bash_profile
+	
+	echo $JAVA_HOME
+	
+	
+Step-20  Now check logs of newly added node in jenkins server
+
+------------------------------------------------------------------------

@@ -1,0 +1,164 @@
+Git clone ?
+
+	Clone remote repo locally. 
+	
+	( Sometime only master brnach clone from remote to Local )
+	
+		git clone <Remote-REPO-name-with-Path>
+		
+		git clone  -b  BranchName
+		
+		git clone --sigle-branch <Branch-Name>
+		
+		git clone  Git-Url-of-Project  Folder-Location-Locally
+		
+-----------------------------------------------------------------------------
+git push  
+
+		Push your local repo  to  Remote repo 
+			
+-----------------------------------------------------------------------------
+git pull   = Git fetch  +  Git Merge 
+	
+		pull automatically merges the commits without letting you review the first. 
+
+
+git fetch = When you donot want to directly merge the changes from the remote repo and want to first review the code, git fetch occurs.
+
+-------------------------------------------------------------------------------
+git merge = When we merge feature branch into master branch ( When feature branch created from master, it got one file from master branch) and both branch have same name of file but the content were different , so then if we merge feature branch into master, the conflict occurs.
+  
+git checkout dev1 
+
+	vi  randhir.txt
+		
+			Edit and save 
+
+git checkout  master
+
+git merge dev1
+
+Error come as below :
+
+[root@client1 myproject1]# git merge dev1
+Auto-merging randhir.txt
+CONFLICT (content): Merge conflict in randhir.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+How to resolve :
+	
+	1) open that file which show error while merge 
+	
+			vi randhir.txt
+	2)  remove arrows and make sure which data (Master /dev1) will be on top / bottom of the file and then save and exit from the editor
+	
+	3) git status 
+
+		git add  randhir.txt 
+	
+	4)  git commit  -m "confilict resolved "
+	
+git tag :
+
+	Tag assign a meaningful name / identifier with specific version in repo.
+	Once tag created for particualr save (commit ) even if you create a new commit it will not be update. 
+	
+git stash ( Temp. memory location for holding file for the time being )
+ 
+ ( File should be in stage area, Note :  Dont commit for testing stash )
+ Step-1
+ 
+	vi  aa.txt
+	
+		edit and save exit
+		
+	git add aa.txt  
+
+	git stash 
+	
+	git stash list 
+
+step-2 	
+	vi  aa.txt
+	
+		add some data and save exit
+		
+	git add aa.txt  
+
+	git stash 
+	
+	git stash list 
+		
+Step-3 pull out stash files 
+
+		git stash apply  stash@{1}
+		
+Step-4  git stash  pop  ( all files will open from stash and show conflict )
+
+Step-5 git stash   drop   stash@{1}
+
+step-6  git stash clear 
+
+
+git reset :
+------------
+
+	Reset is useful command that is used to undo local changes to  the state of the git repo.
+	
+
+------------------------------------------------------------
+how to reset head in commit ?
+
+	 git log --oneline  
+	 git reset --hard 8e2a624
+
+----------------------------------------------------------------
+
+git rebase = it is an action in git that allow you to rewrite commits from one git branch to another branch,
+Eseentially git rebase is deleting commits from one branch and addming them to the another.
+
+When to use rebase ?
+
+1)  if you want to revert the changes quickly
+
+2) If you want to keep the same history rather than rewrite it.
+
+3) whenever we want to add changes of feature1 branch and back into the base (Master) branch.
+
+------------------------------------------------------------------
+Assignment : 
+------------
+git rebase 
+		
+git restore 
+
+git revert  
+-----------------------------------------------
+
+-----------------------------------------------
+.gitignore  file contains those file name / extension which we dont want to push on Remote Repo.
+
+vi  .gitignore 
+
+	mypasswd.txt
+	myhashforbank.txt
+
+
+git add .gitignore 
+
+git commit  -m "added ignore file"
+
+git push origin master 
+----------------------------------------------------
+
+
+Provide your machine :
+
+  public key 
+  desire repo name of our account
+  email which register with Github for collabrator,
+
+-----------------------------------------------------  
+
+cdtsbikaner@gmail.com

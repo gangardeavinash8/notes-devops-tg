@@ -1,0 +1,69 @@
+K8 components ?
+
+MASTER NODE 
+------------------------
+
+1)  API server 
+---------------
+
+	communicate with Data plane ( Worker node )
+	
+	Centralized mgmt 
+	
+	Authentication and authorization mechanism  ( RBAC )
+	
+	Authentication :  who can login into my cluster ?
+	
+	Authorization :  What the person can do ? ( RBAC )
+	
+	
+		Ex: 
+				Namespace : isolated name of projects
+	
+			 harman   -->   3 Project  (READ, VIEW, WATCH) 
+			 ekam     -->   5 project   ( READ , CREATE , DELETE, UPDATE)
+			 
+			 (Role based access control)  ==  IAM (AWS)
+			 
+2) Kube controller /  Controller-manager 
+
+		* maintain the desire state of application inside the POD ( WP / Tomcat / Android / IOS)
+		* make sure all containers indise the POD 
+		* All controlling will be done API-server 
+		
+3) Kube Scheduler 
+
+		*  Decide the best fit node ( WORKER / Data Plane) for our application ( POD) 
+		*  We can install / setup ( deploy) application on specific hardware  
+
+
+			mysql  / postgreqs  -->  WN3 ( isci hdd)
+			
+			apache -->  WN1 + WN2 ( sata )
+			
+4) etcd 
+
+			It is a distributed database which stores the complete information about :
+			
+						cluster configuration 
+							
+								+
+						Cluster state 
+						
+				in key value pair  ( JSON / Yaml )
+				
+------------------------------------------------------------------------------------------------------
+
+WORKER Node :
+
+---------------------
+
+kubelet:  it it a service which runs on worker node + master node  (  kubectl , CLI tool) 
+
+kube-proxy:   Kube-proxy a critical composnent responsible for network proxying and load balancing.
+		
+		kubeadm (master node) --> api-server , controller, scheduler , etcd 
+		kubelet (master + worker)->  agent for worker node and communication with API-Server 
+		kubectl (master + worker)->  command for deploy Yaml , service create , cluster check		
+		
+--------------------------------------------------------------------------------------------------------

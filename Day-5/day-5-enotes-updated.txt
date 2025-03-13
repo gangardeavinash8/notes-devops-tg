@@ -1,0 +1,176 @@
+ps  -aux 
+
+	-a  -> All user
+	-u ->  user
+	-x -> executable 
+
+ps -elf 
+		
+
+		Task 
+		Process
+		Thread
+		Background Process ( Daemon )
+		Zoombie 
+nice -->  Priority 
+
+	19 to -20 
+	
+	0 - default 
+	
+	Tomcat-Apache (8080) [ Application Server ]  --->  -20  
+
+----------------------------------------------------------
+top
+htop	
+
+yum install htop  -y
+		
+----------------------------------------------------------
+ load average:  0.00,    0.00,      0.00
+				5Min     10Min      15Min
+----------------------------------------------------------
+	what is buffer memory vs cache memory ?
+-----------------------------------------------------------
+vi  index.html  &    --->  Process sent to background and shown its PID
+
+top &
+
+id  & 
+-----------------------------------------------------------
+bg   --> No of background process 
+jobs --> listing background process with pid and its names list
+fg  -->  Bring process to foreground
+
+You want to kill that background kill, how  ?
+
+ps  
+-----------------------------------------------------------
+kill  -9  PID 
+kill -l 
+
+The most common kill signals are:
+
+1  Hangup
+			
+2  Interrupt from keyboard
+
+9   Kill signal
+
+	
+15  Termination signal
+
+17, 19, 23  Stop the process
+
+---------------------------------------------------------------
+renice  --> it is use to change prioroty of existing process. 
+	
+	Syntax :    renice   NICE   PID-oF-Existing-Process 
+	
+			renice -20  1  
+
+---------------------------------------------------------------
+
+w   ->  who is doing what ?
+
+---------------------------------------------------------------
+screen
+		Create session for screen  
+		
+				screen -S  name-of-screen
+		List session 
+		
+			screen -ls 
+			
+		resume previous session of screen
+
+			screen -rd  name-of-screen
+---------------------------------------------------------------
+last
+lastlog
+---------------------------------------------------------------
+netstat  --> 
+		
+		netstat  -plant 
+		netstat  -plantu  
+		
+		netstat --verbose
+		
+nmap	 --> 
+	
+	yum install nmap -y
+	
+			OR
+	
+	dnf  install nmap -y
+	
+	nmap  -sT   www.uniraj.ac.in
+	nmap  -Pn IP-Address
+---------------------------------------------------------------
+wget  -> Download file command line 
+curl ->
+
+curl -o tgnewimg.jpeg   https://technicalguftgu.in/wp-content/uploads/2021/06/WhatsApp-Image-2021-06-22-at-9.46.43-PM-768x768.jpeg
+
+
+How to check SSL using curl  ?
+
+curl --insecure -vvI https://www.rtu.ac.in 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+
+
+---------------------------------------------------------------
+Private IP address find :
+
+nmcli
+ip addr     
+ip a
+ifconfig
+cat /etc/hosts 
+ip route  -->  -->  IP address  + NetMask  +  Gateway 
+
+Location of DNS file in linux  ?
+
+	cat  /etc/resolv.conf
+
+		nameserver  8.8.8.8
+		nameserver  4.4.2.2
+-----------------------------------------------------------------
+public IP address find ?
+
+	curl  ifconfig.io
+	
+	curl ifconfig.me 
+	
+----------------------------------------------------------------
+nslookup   www.rtu.ac.in
+
+host 172.67.223.78
+
+dig
+
+	dig  www.rtu.ac.in  +short
+	dig  www.rtu.ac.in  +trace
+	dig  . NS 
+
+
+----------------------------------------------------------------
+yum / dnf   ==>  Software dependecnies can resolve. 	
+
+apt-get  -->  ubuntu 
+
+brew  --> MAC OS
+----------------------------------------------------------------
+
+How to find mac address of conntecting device / own ?
+
+	arp 
+	
+--------------------------------------------------------------
+
+cronjob    
+
+ssh-keygen and share with other machine  ( Useful in ANSIBLE )   
+
+------------------------------------------------
+
+introduction to Git and Github

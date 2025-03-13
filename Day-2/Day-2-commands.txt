@@ -1,0 +1,215 @@
+UNIX  -->  LINUX
+
+Kernel --> Core part of OS 
+		   intermideate part which communicate b.w H/w and application 
+	
+	Micro kernel   ( Mobile / ios )
+	
+	Monolethic Kernel
+	
+	Hybrid kernel 
+	
+-----------------------------------------------
+	UNIX  -->  HP-UX
+			   Sun - Solaris 
+			   IBM - IRIX 
+
+	LINUX -->  RED HAT, Centos , Ubuntu ,  		   
+
+-----------------------------------------------
+Open Source :
+
+1) open source means source code of Kernel 
+
+2) you can change source code 
+
+3) also you change source code and launch as per your need.
+
+4) Freeware and open source
+-----------------------------------------------
+	. ->  Current File System
+	
+	.. --> previous file system 
+
+	/ 
+----------------------------------------------
+
+dr-xr-x---   5 root root  202 Jun 16 03:47 root
+
+-----------------------------------------------
+1) ls 
+
+		-l -> Long listing 
+		-a -> Hidden files 
+		-t -> time
+		-r -> recursive mode
+		
+	. -> File / dir start with dot operator k/as Hidden file / dir
+	
+2)  mkdir 
+
+		mkdir   India
+		
+		mkdir -p  World/India/Rajasthan/Jaipur
+
+3)  ls -ltr  -->  Listing of files + dir in current file system 
+		
+			
+3.1)  ls -ld  World/ 		
+		
+3.2)  ls -l   myinfo.txt 
+
+
+
+4)  cd 	
+			cd  World/India/Rajasthan/Jaipur
+
+5) File creation in linux  ? 
+
+	echo "Hello" > myinfo.txt 
+	
+Create empty file 
+
+	touch  Hellostd.txt 
+--------------------------------------------------	
+	vi 
+	
+	vim 
+	
+	vim.tiny  
+	
+--------------------------------------------------
+6)  du ( Disk usages )
+		
+		-h 
+		-s 
+7)  operator in linux :
+	
+		>  	 STDOUT 
+		<	 STDIN   ( EMAIL get some input from file )
+		>> 	 heredoc ( Append )
+
+8)  cat  
+     
+	 File output 
+	 
+		Ex:    cat  myfile.txt
+
+	 
+	 File Create 
+	
+		Ex:	 cat > mytask
+				
+				fjkvdjkvdbkvjbdkvd
+				dvdkjvjndjkvndjkvndk
+				vdlkjvndjkvndjkvndkvd
+				
+			ctrl d 
+		
+
+-----------------------------------------------------------
+		root 
+Dir.
+
+   U    G    O	 
+d rwx  r-x  r-x 		3 	root	 root  19 Jun 16 03:47 World
+   7    5    5	
+	
+File 	
+	
+   U    G     O
+- rw-  r--  r-- 		1   root 	 root   6 Jun 16 03:58 myfile.txt
+   6    4    4
+
+--------------------------------------------------------------
+Normal Permission in linux :  10 bit permission set 
+
+		r  - read		4
+		w  - write	    2
+		x  - execute 	1
+					--------
+						7
+					--------
+-----------------------------------------------------------------
+3 types of ppl in linux  :
+
+		USER/ OWNER 			GROUP 				OTHER 
+		
+			U					 G					  O
+
+		   rwx					 rwx				 rwx
+		   
+		    7					 7					  7 
+------------------------------------------------------------------
+
+9)  umask   (root)
+			
+			0022 
+
+Dir =   0777
+	   -0022
+	 ----------
+		0755   
+	-----------
+d rwx   r-x   r-x 
+		
+
+File =   0666
+		-0022
+	 ---------------
+		 0644
+	------------------
+	
+	-  rw-   r--   r--
+	
+--------------------------------------------
+
+umask ( Local User )
+
+	su - ekam 
+	
+	umask --->   0002  
+
+Dir
+			0777
+		-	0002
+		  ----------
+			0775
+		  ------------
+		  
+			   U     G    O 
+			d rwx   rwx  r-x
+			
+File 			
+			
+			0666
+		-	0002
+		--------------
+			0664
+			
+			   U     G    O  
+			- rw-    rw-  r-- 
+			
+------------------------------------------------
+
+		www.yahoo.com/India/index.html 
+	
+			index.html -->  644 
+						
+							rw-   r--   r-- 
+							 U     G     O  
+							 
+							 
+							 
+							 
+			India      --->  755  
+			
+							d  rwx    r-x    r-x  
+							
+						
+---------------------------------------
+Kindly create account on following :
+
+1. github   
+
+2. dockerhub 

@@ -1,0 +1,414 @@
+    1  history 
+    2  kubectl describe node master.tg.com  |  less
+    3  kubectl  get  ns
+    4  kubectl  get  po  --all-namespaces
+    5  watch -n1 kubectl  get  po  --all-namespaces  -o wide 
+    6  kubectl  create ns mytg
+    7  kubectl  get ns
+    8  kubectl  get po -n mytg 
+    9  kubectl  get ns
+   10  kubectl  kubec 
+   11  kubectl describe no master.tg.com   | less
+   12  kubectl  get ns 
+   13  kubectl  describe ns mytg 
+   14  mkdir myyaml
+   15  cd  myyaml/
+   16  kubectl  get no 
+   17  kubectl  get no -o wide 
+   18  kubectl  get ns
+   19  kubectl  get po  -n mytg
+   20  kubectl api-resources  |  less
+   21  kubectl  describe node master.tg.com  |  less
+   22  history 
+   23  vi pod-test.yaml
+   24  kubectl api-resources  |  less
+   25  vi pod-test.yaml
+   26  kubectl create -f pod-test.yaml
+   27  vi pod-test.yaml
+   28  kubectl create -f pod-test.yaml
+   29  kubectl get po 
+   30  kubectl get ns 
+   31  kubectl get po -n mytg
+   32  kubectl describe po app1  -n mytg
+   33  kubectl get po -n mytg  | less
+   34  kubectl describe po app1  -n mytg  | less
+   35  cat  pod-test.yaml 
+   36  kubectl get po -n mytg -o wide 
+   37  kubectl describe po app1  -n mytg  | less
+   38  kubectl exec  -ti   app1 -c  c1  bash
+   39  kubectl exec  -ti   app1 -c  c1  bash  -n mytg
+   40  kubectl exec  -ti   app1 -c  c2  bash  -n mytg
+   41  kubectl exec  -ti   app1 -c  c3  bash  -n mytg
+   42  kubectl get po -n mytg -o wide 
+   43  kubectl  delete po app1  -n mytg
+   44  kubectl get po -n mytg -o wide 
+   45  hostnamectl set-hostname master.tg.com
+   46  bash 
+   47  hostname
+   48  ifconfig 
+   49  vi  /etc/hosts
+   50  hostname
+   51  ssh-keygen  -t  rsa
+   52  ls -ltr  /root/.ssh/
+   53  cat  /root/.ssh/id_rsa.pub 
+   54  hostname
+   55  ssh  wn1.tg.com
+   56  ssh 172.31.20.255
+   57  vi   /etc/sysctl.d/k8s.conf
+   58  sysctl --system
+   59   yum install docker -y 
+   60  systemctl start docker && systemctl enable docker
+   61  vi /etc/yum.repos.d/k8s.repo
+   62  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+   63  systemctl start kubelet ; systemctl enable kubelet ; systemctl status kubelet
+   64  systemctl status kubelet
+   65  kubeadm init
+   66    mkdir -p $HOME/.kube
+   67    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   68    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   69  kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+   70  kubectl  get po
+   71  kubectl  get no
+   72  top
+   73  kubectl get no
+   74  kubectl get po
+   75  kubectl get pods
+   76  kubectl get node
+   77  kubectl get pods 
+   78  kubectl get namespace
+   79  kubectl get ns
+   80  kubectl api-resources  | less
+   81  kubectl get ns
+   82  kubectl get po 
+   83  kubectl get po -n kube-node-lease
+   84  kubectl get po -n kube-public
+   85  kubectl get po -n kube-system
+   86  kubectl get po -n kube-system -o wide
+   87  kubectl  get no
+   88  kubectl  get po
+   89  kubectl  get ns 
+   90  kubectl  describe node master.tg.com  | less
+   91  kubectl  get no
+   92  kubectl  describe node master.tg.com  | less
+   93  kubectl get po -n kube-system 
+   94  kubectl  describe node master.tg.com  | less
+   95  kubectl  describe node wn1.tg.com  | less
+   96  kubectl  describe node master.tg.com  | less
+   97  kubectl  describe node wn1.tg.com  | less
+   98  kubectl get no
+   99  kubectl get po --all-namespaces
+  100  kubectl  get ns 
+  101  kubectl create mynewtg
+  102  kubectl create ns  mynewtg
+  103  kubectl get ns 
+  104  kubectl  get no
+  105  kubectl get ns 
+  106  kubectl get po  -n mytg 
+  107  kubectl get po 
+  108  kubectl get ns 
+  109  kubectl get po  -n  mynewtg
+  110  kubectl --api-resource |  less
+  111  history   |  grep api 
+  112  kubectl api-resource |  less
+  113  kubectl api-resources |  less
+  114  top
+  115  hostname
+  116  ifconfig 
+  117  vi  /etc/hosts
+  118  ssh wn2.tg.com
+  119  ssh 172.31.20.255
+  120  cat  /etc/hosts
+  121  cat /root/.ssh/id_rsa.pub 
+  122  ssh 172.31.26.90
+  123  top
+  124  kubeadm token create --print-join-command
+  125  kubectl  get nodes
+  126  kubectl get po --all-namespace
+  127  kubectl get po --all-namespaces
+  128  kubectl get po --all-namespaces  -o wide 
+  129  kubectl get ns 
+  130  kubectl get po 
+  131  kubectl get po -n mytg
+  132  kubectl get po -n mynewtg
+  133  kubectl get po --all-namespaces  -o wide 
+  134  kubectl --cluster-info
+  135  kubectl --clusterinfo
+  136  kubectl cluster-info
+  137  kubectl get ns 
+  138  kubectl get po -n mynewtg
+  139  ls -ltr 
+  140  cd  myyaml/
+  141  pwd
+  142  hostname
+  143  vi  pod-test.yaml
+  144  kubectl api-resources |  less
+  145  vi  pod-test.yaml
+  146  kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o yaml 
+  147  kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o yaml  > myapp2.yaml
+  148  kubectl run myapp2 --image=cdtsbikaner/devops150624:v1.1  --dry-run=client -o json 
+  149  ls -ltr 
+  150  vi  myapp2.yaml
+  151  kubectl create  -f myapp2.yaml
+  152  vi  myapp2.yaml
+  153  kubectl create  -f myapp2.yaml
+  154  vi  myapp2.yaml
+  155  kubectl create  -f myapp2.yaml
+  156  vi  myapp2.yaml
+  157  kubectl get po 
+  158  kubectl get po -n mynewtg
+  159  watch -n1 kubectl get po -n mynewtg
+  160  watch -n1 kubectl get po -n mynewtg  -o wide
+  161  kubectl  describe myapp2 -n mynewtg   |  less
+  162  kubectl  describe po myapp2 -n mynewtg   |  less
+  163  kubectl  get ev po myapp2  -n mynewtg
+  164  kubectl  get ev myapp2  -n mynewtg
+  165  kubectl  get ev  myapp2 
+  166  kubectl  describe po myapp2 -n mynewtg   |  less
+  167  kubectl  get events -n mynewtg 
+  168  kubectl  get po -n mynewtg
+  169  kubectl  get service
+  170  kubectl  get po -n mynewtg
+  171  kubectl  get po -n mynewtg  -o wide
+  172  kubectl scale --replicas=3 myapp2  -n mynewtg
+  173  kubectl scale --replica=3 myapp2  -n mynewtg
+  174  kubectl  get po -n mynewtg
+  175  kubectl  delete po myapp2  -n mynetg 
+  176  kubectl  delete po myapp2  -n mynewtg 
+  177  kubectl  get po -n mynewtg
+  178  ls -ltr 
+  179  kubectl  create -f  myapp2.yaml 
+  180  kubectl  get po -n mynewtg
+  181  watch -n1 kubectl  get events -n mynewtg 
+  182  kubectl  label node wn1.tg.com disk=megnatic
+  183  kubectl  get label -L disk
+  184  kubectl  label node wn1.tg.com ram=4gb
+  185  kubectl get no -L disk
+  186  kubectl  get no  -L RAM
+  187  kubectl  get no  -L ram, disk
+  188  kubectl  get no  -L ram disk
+  189  kubectl  get no  -L ram
+  190  kubectl  describe no wn1.tg.com
+  191  kubectl  describe no wn1.tg.com  | less
+  192  kubectl  get no  -L  disk
+  193  kubectl label no wn2.tg.com  disk=ssd 
+  194  kubectl  get no  -L  disk
+  195  vi  myapp2.yaml 
+  196  kubectl  get no  -L  disk
+  197  kubectl  get no  -L  ram
+  198  kubectl label no wn1.tg.com  ram-
+  199  kubectl edit no wn1.tg.com
+  200  kubectl edit  po myapp2  -n mynewtg 
+  201  kubectl  describe ns mynewtg 
+  202  vi  myapp2.yaml 
+  203  kubectl  get no  -L  disk
+  204  kubectl  get po --all-namespaces -o wide 
+  205  kubectl  get po -n mynewg  -o wide 
+  206  kubectl  get po -n mynewtg  -o wide 
+  207  vi  myapp2.yaml 
+  208  kubectl create -f myapp2.yaml 
+  209  kubectl  get po -n mynewtg  -o wide 
+  210  kubectl  get no  -L  disk
+  211  vi  myapp4.yaml
+  212  kubectl  create -f myapp4.yaml 
+  213  kubectl corden node wn2.tg.com
+  214  kubectl cordan node wn2.tg.com
+  215  kubectl cordon node wn2.tg.com
+  216  kubectl  cordon wn1.tg.com
+  217  kubectl  describe no wn1.tg.com |  less
+  218  kubectl  describe no wn2.tg.com |  less
+  219  kubectl  describe no wn1.tg.com |  less
+  220  vi myapp4.yaml 
+  221  kubectl  get no  -L  disk
+  222  vi myapp4.yaml 
+  223  kubectl  create -f  myapp4.yaml 
+  224  kubectl  get ev wn1.tg.com 
+  225  kubectl  describe no  wn1.tg.com 
+  226  kubectl uncordon wn1.tg.com 
+  227  kubectl  describe no  wn1.tg.com 
+  228  kubectl  get no  -L  disk
+  229  vi  myapp4.yaml 
+  230  kubectl  get po --all-namespace 
+  231  kubectl  get po --all-namespaces 
+  232  kubectl  describe no master.tg.com 
+  233  kubectl  describe no master.tg.com   |  less
+  234  kubectl  edit no master.tg.com
+  235  history 
+  236  kubectl  describe no master.tg.com   |  less
+  237  watch -n1  kubectl  get po -n mynewtg -o wide 
+  238  kubectl  get label -L disk 
+  239   history 
+  240   history  | label
+  241   history  | labels
+  242  kubectl  get no  -L  disk
+  243  history 
+  244  history  > /home/ec2-user/history-10.8.2024
+  245  cd myyaml/
+  246  ls -ltr 
+  247  vi myapp2.yaml 
+  248  cp  myapp2.yaml myapp3.yaml
+  249  vi  myapp2.yaml 
+  250  ls -ltr 
+  251  vi myapp3.yaml 
+  252  ls -ltr 
+  253  vi  myapp4.yaml 
+  254  ls -ltr 
+  255  cat pod-test.yaml 
+  256  tar cpfz  myyaml.tar.gz  .
+  257  tar cpfz  myyaml.tar.gz  /root/myyaml/
+  258  tar -cpfz  myyaml.tar.gz    /root/myyaml/  
+  259  ls -ltr 
+  260  tar xfh  myyaml.tar.gz  -C  /opt/
+  261  ls -ltr /opt/
+  262  gzip ../myyaml/
+  263  gzip  myyaml/zip  ../myyaml/
+  264  gzip  myyaml.zip  ../myyaml/
+  265  gzip   ../myyaml/  
+  266  ls -ltr 
+  267  cd ..
+  268  cd myyaml/
+  269  gzip   *.yaml
+  270  ls -ltr 
+  271  cp  *.gz   /home/ec2-user/
+  272  watch -n1  kubectl get po -n mynewtg
+  273  watch -n1  kubectl get all -n mynewtg
+  274  watch -n1  kubectl get all -n mynewtg -o wide
+  275  kubectl  api-resources |  less
+  276  watch -n1  kubectl get all -n mynewtg -o wide
+  277  scp  /root/.kube/config   172.31.26.90:/root/.kube/
+  278  scp  /root/.kube/config   172.31.20.255:/root/.kube/
+  279  cat  /root/.kube/config 
+  280  watch -n1  kubectl get all -n mynewtg -o wide
+  281  cd  myyaml/
+  282  ls -ltr 
+  283  cp   rctest.yaml nodeport-service.yaml nginx-vol-with-network-test.yaml  nginx-vol-test.yaml   /home/ec2-user/
+  284  kubectl  get ns 
+  285  kubectl  get po -n mynewtg 
+  286  cd   myyaml/
+  287  vi nodeport-service.yaml
+  288  kubectl  get svc 
+  289  kubectl  get svc  -n mynewtg
+  290  kubectl create -f  nodeport-service.yaml 
+  291  vi nodeport-service.yaml
+  292  kubectl  get svc  -n mynewtg
+  293  kubectl  get svc 
+  294  kubectl  get svc  -n mynewtg
+  295  vi  nodeport-service.yaml 
+  296  ls -ltr 
+  297  vi  nginx-vol-test.yaml
+  298  kubectl  get po -n 
+  299  kubectl  get po -n   mynewtg
+  300  kubectl  delete po --all -n mynewtg 
+  301  cp  nginx-vol-test.yaml   nginx-vol-with-network-test.yaml 
+  302  vi  nginx-vol-with-network-test.yaml 
+  303  vi nginx-vol-test.yaml 
+  304  ls -ltr
+  305  kubectl  create -f  nginx-vol-with-network-test.yaml 
+  306  vi  nginx-vol-with-network-test.yaml 
+  307  vi  nodeport-service.yaml 
+  308  cat /etc/hosts
+  309  ssh 172.31.26.90
+  310  kubectl  delete  po myapp8  -n mynewtg
+  311  vi  nginx-vol-with-network-test.yaml 
+  312  vi  nodeport-service.yaml 
+  313  kubectl  create -f  nginx-vol-with-network-test.yaml 
+  314  vi  nodeport-service.yaml 
+  315  vi  nginx-vol-with-network-test.yaml 
+  316  vi  nodeport-service.yaml 
+  317  vi  rctest.yaml
+  318  kubectl  create -f rctest.yaml 
+  319  kubectl api-resources
+  320  kubectl api-resources  | less
+  321  vi  rctest.yaml
+  322  kubectl  create -f rctest.yaml 
+  323  kubectl api-resources  | less
+  324  vi  rctest.yaml
+  325  kubectl  create -f rctest.yaml 
+  326  vi  rctest.yaml
+  327  kubectl  create -f rctest.yaml 
+  328  vi  rctest.yaml
+  329  kubectl  create -f rctest.yaml 
+  330  vi  rctest.yaml
+  331  kubectl  create -f rctest.yaml 
+  332  kubectl  delete po rstest1-gl8nd   -n mynewtg 
+  333  kubectl  delete po  rstest1-pz5nb   -n mynewtg 
+  334  vi  rctest.yaml
+  335  curl  http://localhost:32000
+  336  kubectl delete rs rstest1  -n mynewtg
+  337  vi  rctest.yaml
+  338  kubectl  create -f rctest.yaml 
+  339  vi nodeport-service.yaml 
+  340  kubectl exec  -ti  rstest1-6gs44   -c  c1  bash  -n mytg
+  341  kubectl exec  -ti  rstest1-6gs44   -c  c1  bash  -n mynewtg
+  342  kubectl exec  -ti rstest1-kvt5w    -c  c1  bash  -n mynewtg
+  343  kubectl exec  -ti rstest1-l4x6m     -c  c1  bash  -n mynewtg
+  344  vi  nginx-vol-with-network-test.yaml 
+  345  kubectl scale --replicas=6 -f  nginx-vol-with-network-test.yaml
+  346  kubectl scale --replicas=6 replicaset.apps/rstest1 
+  347  kubectl scale --replicas=6 replicaset.apps/rstest1  -n mynewtg
+  348  cat  /etc/hosts
+  349  ssh 172.31.26.90
+  350  ssh 172.31.26.98
+  351  ssh 172.31.20.255
+  352  top
+  353  history 
+  354  kubectl get no
+  355  kubectl get ns 
+  356  kubectl  get po -n mytg
+  357  kubectl  get po -n mynewtg
+  358  kubectl  get po 
+  359  cat /etc/kubernetes/admin.conf  | less
+  360  cat /etc/kubernetes/controller-manager.conf | less
+  361  kubectl get no 
+  362  kubectl get ns 
+  363   
+  364  kubectl ge po -n mynewtg 
+  365  kubectl get po -n mynewtg 
+  366  kubectl describe  po myapp5-bingo  -n mynewtg
+  367  kubectl describe  po myapp5-bingo  -n mynewtg  | less
+  368  kubectl logs myapp5-bingo -n myunewtg  | less
+  369  kubectl logs myapp5-bingo -n mynewtg  | less
+  370  kubectl get po -n mynewtg 
+  371  kubectl logs myapp2 -n mynewtg  | less
+  372  cd myyaml/
+  373  vi nginx-vol-test.yaml
+  374  top
+  375  vi nginx-vol-test.yaml
+  376  kubectl create -f nginx-vol-test.yaml 
+  377  vi nginx-vol-test.yaml
+  378  kubectl create -f nginx-vol-test.yaml 
+  379  kubectl  get po -n mynewtg
+  380  kubectl delete po -all  -n mynewtg
+  381  kubectl delete po --all  -n mynewtg
+  382  kubectl  get po -n mynewtg
+  383  kubectl create -f nginx-vol-test.yaml 
+  384  kubectl  describe no wn1.tg.com 
+  385  kubectl  get ev myapp6  -n mynewtg
+  386  kubectl  get events  myapp6  -n mynewtg
+  387  kubectl  get events    -n mynewtg
+  388  cat  pod-test.yaml.gz
+  389  xterm-256colorxterm-256color:q!
+  390  ls -ltr 
+  391  cat nginx-vol-test.yaml 
+  392  kubectl  get events    -n mynewtg
+  393  kubectl apply -f nginx-vol-test.yaml 
+  394  vi  nginx-vol-test.yaml 
+  395  kubectl create -f  nginx-vol-test.yaml
+  396  kubectl  get events    -n mynewtg
+  397  kubectl  get po -n mynewtg
+  398  kubectl  get po -n mynewtg  -o wide
+  399  kubectl  exec -ti  myapp7 -c c1 bash
+  400  kubectl  exec -ti  myapp7 -c c1 bash -n mynewtg
+  401  kubectl  get po -n mynewtg
+  402  kubectl  describe po myapp7  -n mynewtg
+  403  kubectl  exec -ti  myapp7 -c c1 bash -n mynewtg
+  404  vi  nginx-vol-test.yaml 
+  405  kubectl create  -f nginx-vol-test.yaml 
+  406  vi  nginx-vol-test.yaml 
+  407  kubectl create  -f nginx-vol-test.yaml 
+  408  kubectl  get events    -n mynewtg
+  409  ssh wn2.tg.com
+  410  cat /etc/hosts
+  411  ssh  172.31.26.90
+  412  watch -n1 kubectl  get events    -n mynewtg
+  413  history  
+  414  history   >  /home/ec2-user/history-Day-18.txt

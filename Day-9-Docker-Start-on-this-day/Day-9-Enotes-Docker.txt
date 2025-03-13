@@ -1,0 +1,83 @@
+Docker 
+
+What are docker containers ?
+
+	Process 
+		kill
+		start
+		stop
+		restart
+		zoombie 
+
+PID  ---->   1  
+
+		init / SystemD 
+
+PID -->   2  to  999    -->  Process 
+
+	- Microservice 
+	- Contenorization 
+	
+------------------------------------------------------
+
+yum install docker
+systemctl status  docker
+systemctl start   docker
+systemctl enable  docker
+systemctl status  docker
+
+-------------------------------------------------------
+
+Overlay2 		=> Storage Driver  (  Redhat , centos , EC2, Fedora )  [  VFS , ZFS ] 
+Aufs (Overlay1) => Debian ( ubuntu)
+DeviceMapper 
+
+Default home of docker :
+
+		/var/lib/docker/
+
+	/var ==>  100GB ( LVM / EFS )
+		
+
+   
+overlay  => Network adapter/ driver  (  BRIDGE , NAT ) 
+----------------------------------------------------------
+	docker ps -a
+	docker info  |  less
+	docker images
+
+docker pull centos 
+
+docker pull ubuntu 
+
+docker  images 
+
+	How to create / run container from DOCKER OFFICIAL IMAGE PULLED FROM DockerHUb
+
+docker run  --name  c1  -dit   <DOCKER-IMAGE-ID>
+
+docker ps -a 
+
+	Cross Test for login :
+
+docker exec  -ti  <Container-ID>  bash 
+
+
+------------------------------------------------------
+
+	-d  deatachble mode
+	
+	-t  terminal 
+	
+	-i  intractive mode 
+	
+	
+--------------------------------------------------------
+
+	systemctl restart docker 
+
+	docker ps -a 
+	
+	docker start  <Container-ID>
+	
+-----------------------------------------------------

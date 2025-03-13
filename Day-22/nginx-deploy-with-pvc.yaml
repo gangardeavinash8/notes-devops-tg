@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp12
+  namespace: mytg
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      env: prod
+  template:
+    metadata:
+      labels:
+        env: prod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: vol1
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: vol1
+        persistentVolumeClaim:
+          claimName: tgpvc

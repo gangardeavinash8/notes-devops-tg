@@ -1,0 +1,9 @@
+FROM centos:7
+ARG myip=127.0.0.1
+RUN echo $myip
+CMD  ["echo","$myip"]
+CMD ["echo","Helloooooooo"]
+ENTRYPOINT ["echo","BYE world"]
+ENTRYPOINT ["ls"]
+#ENTRYPOINT ["ls","$@"]
+#ENTRYPOINT ["sh","mytask.sh"]

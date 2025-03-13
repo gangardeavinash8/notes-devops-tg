@@ -1,0 +1,233 @@
+Relative Path of file / dir
+
+	index.html   
+
+Absoulte path of file /dir
+
+	/root/tgIndia/index.html 
+
+------------------------------------------
+Day-4
+
+cp	( File / Dir )
+
+		cp   SOURCE-FILE/DIR   DESTNATION
+
+	-v  =  Verbose  ( show)
+	-r  = recursive 
+	-d  = directory 
+	
+Note:  Multiple files can be copy at single destination location, But one file can not copy at various location at same time with cp command. 
+  ( In case of multiple location of copy , only last location will choose for copy) 
+
+rm ( File / Dir )
+
+		rm   file / dir
+		
+			-i =  intractive mode
+			-r = recursive
+			-f  = forcefully 
+
+rmdir  =  For Empty Directory 
+
+
+
+mv ( File / Dir )
+	
+	Move =   Source and Destination of file/dir are differnt, then File/Dir Move occurs 
+	
+	Rename = Source and destination of file/dir are same then rename occurs
+	
+-----------------------------------------------------------------------	
+	
+grep
+		^ = Match from begining 
+		$ = Match from end 
+
+pgrep = Googling  ( Self assignment )
+
+egrep = Googling  ( Self assignment )
+--------------------------------------------
+
+wc = word count 
+ -l  = no of line 
+------------------------------------------
+
+tail -f  
+
+	-f = frequent way 
+------------------------------------------
+chage  --->  /etc/shadow 
+
+df -hT  -->  Detail file system
+
+du  -hs  -->  Disk Usage 
+	
+	-h = human readable format
+	-s = size ( KB / MB/ GB )
+
+Ex:  
+		du -hs  /etc/
+-------------------------------------------
+
+
+tar (Backup)
+
+	a) 	Normal Backup ( Little bit data will Compression )
+
+	tar cpf  etc-backup-fs-23-04-2024.tar  /etc
+
+	Extension: 	 *.tar
+			
+			-c = create
+			-f = file 
+			-p = preserve the permission bit 
+			-v = verbose 
+		 
+		
+	b) Backup + Compression 
+	
+			-c = create
+			-f = file 
+			-p = preserve the permission bit 
+			-v = verbose 
+			-z =  compression 
+	tar cpfz  New-etc-bakup-23-04-2024.tar.gz  /etc
+		
+		*.tar.gz 
+
+	c) Extraction ( unzip)  for  *.tar / *.tar.gz
+	
+			-x = extract
+			-f = file 
+			-h = human readable format
+		
+		tar  -xfh  etc-backup-fs-23-04-2024.tar
+
+		tar -xfh New-etc-bakup-23-04-2024.tar.gz  
+
+	How to extract / untar file on specific location of system
+	
+		tar  xfh New-etc-bakup-23-04-2024.tar.gz  -C  /opt/
+
+	How to check / list all file/dir inside the tar file ?
+	
+		tar -tvf  New-etc-bakup-23-04-2024.tar.gz   | less
+
+-------------------------------------------
+		*****Self learning***** 
+gzip 
+unzip
+rsync  =  assignment ( Incremental Backup )  =>  File System + DB 
+-------------------------------------------
+	
+ACL	= Access control List 
+	
+	getfacl 
+		
+		getfacl etc-backup-fs-23-04-2024.tar
+		
+	setfacl 
+	
+		setfacl  -m u:ekam:rwx  etc-backup-fs-23-04-2024.tar
+
+Hint:  man setfacl 
+		and go to bottom ( shift G)  for examples.
+
+------------------------------------------------------------------	
+
+Shell script 
+	Shell types ?
+	
+	1)  C Shell  ( C Prog Lib use here ) 
+	
+			*.csh
+			
+	2) TC Shell ( TC prog lib use here)
+		
+			*.tcsh 
+			
+	3)  Korne shell ( perl , c , tc )
+		
+			*.ksh 
+	
+	4)  borne shell (  c, tc, perl, python )
+	
+			*.sh 
+					/bin/sh 
+			
+	5)  borne again shell 
+	
+			*.bash 
+				or
+			*.sh 
+				
+					/bin/bash 
+					
+	#!/bin/bash  	  -->  Shebang			
+--------------------------------------------
+mkdir myscript
+
+cd myscript/
+				
+vi  mysctipt1.sh	
+------------------------------------------------
+#!/bin/bash
+echo "Welcome user"
+whoami
+echo "creating dir here named as TGindia"
+pwd
+mkdir /root/mydata/TGindia
+cp -rd  /root/*   /root/mydata/TGindia
+echo "Thanks for watchhing"
+ls -ltr /root/mydata/Tgindia
+echo "Hello world" > /root/mydata/TGindia/myfile.txt
+echo "NOW NEW FILE CREATED "
+ls -ltr /root/mydata/TGindia/
+echo "----------------------------"
+cat /root/mydata/TGindia/myfile.txt
+echo "----------------------------"
+echo "the content of myfile.txt are: "
+ls -l  /root/mydata/TGindia/myfile.txt
+echo "Good Bye"
+-------------------------------------------------
+
+chmod  u+x  myscript1.sh 
+
+ls -ltr 
+------------------------------------------------		
+
+How to execute shell scripting ?
+
+			sh  myscript1.sh
+			
+			./myscript1.sh
+	
+	How to debug shell scripting ?
+
+			sh -x  myscript1.sh 
+------------------------------------------------		
+ps  -aux 
+netstat
+nmap
+top / htop
+wget
+ifconfig
+host
+dig
+curl
+nslookup
+------------------------------------------------
+yum /dnf    OR   apt-get	***
+
+cronjob    ***
+
+ssh-keygen and share with other machine  ( ANSIBLE )   ***
+
+-----------------------------------------------------------
+
+Shell Script => repeatative task.
+
+CMT ( Config. mgmt tools ) => Ansible , Puppt , Chef 
+
+provisioning  =>  Teraform   

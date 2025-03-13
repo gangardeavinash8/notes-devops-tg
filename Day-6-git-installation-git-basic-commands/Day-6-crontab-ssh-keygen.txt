@@ -1,0 +1,85 @@
+date
+
+timedatectl  set-timezone  'Asia/Kolkata'
+
+date
+
+How to check your session / terminal name  ?
+
+	tty 
+	
+	
+------------------------------------------------------------
+cronjob 	( JENKINS )
+
+Package / Software -->  Cronie 
+Daemon 		-->  	crond   
+
+	systemctl  status crond
+	
+	systemctl  stop crond 
+	
+	systemctl  start crond
+	
+	systemctl  status crond 
+	
+	
+	rpm -qa |   grep  crond 
+
+
+	Task schedule 
+	
+	cat /etc/crontab
+-------------------------------------------------------------	
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+  *  *  *  *  * user-name  command to be executed
+-------------------------------------------------------------
+	
+	   MIN  Hr
+	   10   08  *  *  *  echo "Hello TG" 
+
+Hint: 	   
+https://crontab.guru/	
+
+Works for root user 
+
+	crontab -e 
+
+Works for ekam user 
+
+	crontab -u ekam -e 
+
+Liting of cronJobs 
+	
+	crontab -l 
+	
+	crontab -u ekam  -l 
+
+28 08 * * * echo "Hello Techincal Guftugu"  >  /dev/pts/1
+31 08 * * * tar cpfz  myetcbackup.tar.gz  /etc/
+32 08 * * * mv /root/*.tar.gz  /tmp/
+36 08 * * * rm -rf  /tmp/*.tar.gz
+34 09 * * * tar  cpfz usrbackup.tar.gz  /usr
+35 09 * * * scp  /root/*.tar.gz  root@client1.tg.com:/mnt
+
+
+	
+-----------------------------
+at  command in linux  ?
+
+   Self learning and also compare with cronjob 
+------------------------------------------------------------	
+ssh-keygen and share with other machine  ( Useful in ANSIBLE )   
+
+	ssh-keygen 
+
+
+------------------------------------------------
+
+introduction to Git and Github

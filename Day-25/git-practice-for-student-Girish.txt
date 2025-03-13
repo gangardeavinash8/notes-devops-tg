@@ -1,0 +1,32 @@
+cat .ssh/id_rsa
+top
+cat  .ssh/id_rsa.pub
+ssh git@github.com
+ssh -T git@github.com
+git init
+mkdir myyaml
+cd myyaml/
+git init
+git config --global user.name "ekam"
+git config --global user.email "ekam@gmail.com"
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin git@github.com:cdtsbikaner/tg-project24.git
+git push origin master
+ls -ltr
+echo "# tg-project24" >> README.md
+git statsu
+git status
+git add README.md
+git commit  -m "initial comment"
+git status
+git push origin master
+echo "Hello Naveen bhai kese ho "  >> README.md
+git commit  -m "initial comment new added"
+git add README.md
+echo "Hello Naveen bhai kese ho "  >> README.md
+git commit  -m "initial comment new added"
+git push origin master
+history

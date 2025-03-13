@@ -1,0 +1,212 @@
+sed -i  's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+
+sed -i  's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g'  /etc/yum.repos.d/CentOS-*
+
+Nginx :
+
+	yum install nginx  -y
+	
+	1)  Static Webpage serv for client ( http://  and https://)
+										  80            443
+	2)  Load Balancer  
+	
+	3)  Reverse Proxy 
+	
+	
+Config file:
+
+		/etc/nginx/nginx.conf
+		
+Default Web hosting location :
+
+		/usr/share/nginx/html
+		
+		
+--------------------------------------------------------------------
+	
+httpd ( Apache Webserver)  http://  and https://
+
+
+Config File :
+		
+		/etc/httpd/conf/httpd.conf
+
+Default Home Location :
+
+		/var/www/html 
+
+-----------------------------------------------------------------------
+
+docker images
+
+docker ps 
+
+docker ps -a 
+
+docker rm -f  <Container-ID>
+
+docker rm -f $(docker ps -aq)     Dont use this without permission 
+
+docker kill  <PID>
+
+Remove those container which have exited status 
+
+		docker rm  $(docker ps -aq -f status=exited)
+
+
+Remove all running / exited container from container list 
+
+		
+		docker rm -f   $(docker ps -aq)
+----------------------------------------------------------------------------
+1) Apache web server --->   80  / 443  
+		
+		HTML /CSS /JS 
+		
+		httpd web server:
+
+2)  Tomcat apache Application ( 8080 )
+
+		java based application
+
+		JSP, servlet 	
+			
+------------------------------------------------------------------------------
+vi  Dockerfile
+
+	FROM
+	
+	MAINTAINER 
+	
+	LABEL
+	
+	ARG
+	
+	ENV
+	
+	COPY
+	
+	WORKDIR
+	
+	ADD
+	
+	EXPOSE
+	
+	RUN
+	
+	CMD
+	
+	ENTRYPOINT
+	
+------------------------------------------------------------------------
+
+How to build Dockerfile  ?
+
+	docker build -t  cdtsbikaner/devops150624:v1  .
+
+
+
+Note:  here cdtsbikaner/devops150624   online repo name in DockerHUB
+
+
+
+How to check logs  in running / killed Docker Container
+
+	docker logs -f  <Container-ID>
+
+---------------------------------------------------------------------------
+mkdir  /root/tg
+
+cd /root/tg
+
+echo "Hello world "  >  index.html 
+
+
+vi  Dockerfile
+---------------------------------------------------------------------------	
+FROM centos:7
+
+MAINTAINER "info-tg@gmail.com"
+
+RUN sed -i  's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*  &&  \
+    sed -i  's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g'  /etc/yum.repos.d/CentOS-*
+
+RUN yum update -y && \
+    yum install net-tools bind-utils vim php  java*  -y
+
+COPY ./index.html  /var/www/html
+
+EXPOSE 80 443
+
+CMD  ["/usr/sbin/httpd","-D","FOREGROUND"]
+
+----------------------------------------------------------------------------
+Now build docker file 
+
+	
+docker build -t  cdtsbikaner/devops150624:v1  .
+
+docker images 
+
+
+docker run  --name c11 -dit  <IMAGE-ID>  
+
+docker ps -a 
+
+docker exec  -ti  <CONTAINER_ID>
+
+Note: 
+
+Also cross check Port number from o/p  of docker ps -a 
+
+and access on web brower   with public ip , also allow ports in Security Group of EC2.
+
+---------------------------------------------------------------------------------
+
+CMD vs Entrypoint
+
+ENV vs ARG 
+
+----------------------------------------------------------------------------------
+Assignment :
+
+
+centos / rockylinux 
+
+	NODEJS Dockerfile 
+	
+	Nginx Dockerfile 
+	
+------------------------------------------------------------------------------------
+	
+ARG  -->  Pass at run time of Build image 
+
+	--build-arg
+	
+	docker build -t  myserver:v1  --build-arg x =200  .
+	
+ENV  -->  pass at container level
+
+		( Password, hash , securrity patch, Hotfix name )
+		
+		
+		
+--------------------------------------------------------------------------------
+
+ cdtsbikaner@gmail.com
+ 
+ ----------------------------------------------------------------------------------
+ Range of 32768 to 65535 is quite safe to just get a random
+ ----------------------------------------------------------------------------------
+ 
+ 
+ Reverse Proxy  
+ 
+		https://www.paytm.com:443		--->  Nginx / HAPROXY  -->	  		8080 , 8080 , 8080, 8080
+												11.12.13.14:34000	
+												
+												127.0.0.1:32768
+												127.0.0.1:32767
+												127.0.0.1:32768
+												127.0.0.1:32769
+												

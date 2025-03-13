@@ -1,0 +1,24 @@
+Set default namespace 
+
+	kubectl config set-context --current --namespace=mynewtg
+
+
+(Note:   We will learn set-context in RBAC )
+-----------------------------------------
+Horizontal Pod Autoscaler (HPA)
+
+
+Install stress command to check load on all worker nodes.
+
+	stress  --cpu 8 --timeout 120 
+------------------------------------------
+1. Environment variable in K8s
+	a. secret
+	b. config map
+
+2. Taint and Tolerance 
+
+3. prob in k8s 
+
+4. PV and PVC 
+------------------------------------------

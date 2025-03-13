@@ -1,0 +1,14 @@
+-----------------------------------------------------------
+
+Assignment-1
+	build mysql image using centos / rockylinux / ubuntu
+	3306
+	/var/lib/mysql 
+
+Assignment-2
+	NodeJS
+	test python script and run it on port 3000
+	
+------------------------------------------------------------
+KINDLY SHARE YOU DOCKERHUB REPO NAME at cdtsbikaner@gmail.com
+------------------------------------------------------------

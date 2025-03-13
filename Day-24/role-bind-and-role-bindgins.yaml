@@ -1,0 +1,22 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: devops-role
+  namespace: mytg
+rules:
+  - apiGroups: ["*"]
+    resources: ["pods","services","deployments"]
+    verbs: ["get", "watch", "list","create","update","delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: devops-role-binding
+  namespace: mytg
+roleRef:
+  name: devops-role
+  kind: Role
+subjects:
+  - kind: User
+    name: harman
+    apiGroup: rbac.authorization.k8s.io

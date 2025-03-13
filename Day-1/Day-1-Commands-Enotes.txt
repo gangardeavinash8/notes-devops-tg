@@ -1,0 +1,125 @@
+1.  [ec2-user@ip-172-31-0-185 ~]$   -->  Local user prompt 
+
+		$ -> shell denotes local user 
+		
+		# ->  super user root shell 
+		
+2.  whoami
+
+		ec2-user 
+		@
+		ip-172-31-0-185
+		~  ->  Home directory show 
+
+3. pwd  -> current working dir. 
+
+4.  sudo  -i   
+
+	   OR
+	
+	sudo su - root 
+
+
+	super user do 
+	-i -> intractive mode 
+	
+5. clear 
+
+	 or 
+	 
+	ctrl l 
+	
+6.  id 
+
+	UserID 
+	GroupID
+	
+7. su   -->  Switch user 
+
+	-  --> Requesting the home dir of intended user.
+
+Ex:  ekam 
+			su - ekam 
+-------------------------------------
+	ID 				Name 
+  
+    0     	  --->  root
+					( /root/ )
+
+    1-999 	  --->  process / deamon 
+					( Mariadb/mysql/ apache / game/ oracle) 
+	
+				1 ->  init 
+				1 -> SystemD 
+
+	1000 - 65K --> Local user ID
+					 ( /home )
+-----------------------------------------
+8.  useradd ekam
+		
+	this command will create skeleton of user 
+			
+				/home/ekam 
+				/home/ekam/.bashrs
+				/home/ekam/.bash_profile
+				/home/ekam/.bash_logout
+		
+		
+9.  passwd  ekam 
+
+10.  su  - ekam 
+
+11.    How can we logout from current session of user ?
+
+	 logout 
+	   
+	   or
+	   
+	  exit
+	  
+		or
+	 ctrl  d
+
+12.  man
+
+	we can prepare/ read enotes or take some help from manual.
+	
+	an interface to the on-line reference manuals
+	
+Types of help 
+	
+       1   Executable programs or shell commands
+       2   System calls (functions provided by the kernel)
+       3   Library calls (functions within program libraries)
+       4   Special files (usually found in /dev)
+       5   File formats and conventions eg /etc/passwd
+       6   Games
+       7   Miscellaneous  (including  macro  packages  and  conventions), e.g. man(7),
+           groff(7)
+       8   System administration commands (usually only for root)
+       9   Kernel routines [Non standard]
+
+
+13. date 
+
+	UTC -> universal time clock
+	
+	IST  -->
+	
+14.  timedatectl  
+
+15. timedatectl  set-timezone 'Asia/Kolkata'
+
+16. timedatectl list-timezones
+
+		( q for exit from screen )
+17. history 
+-----------------------------------------------------		
+root 	 --> super user 
+
+
+ec2-user -->  Sudo user ( in the absence of root user he can work like root)
+				(local user)
+				
+				
+ekam  --> Normal local user 

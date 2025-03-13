@@ -1,0 +1,150 @@
+Todays topic:
+
+Nagios monitoring server 
+-------------------------------------
+Infrastructure :
+-------------------------------------
+30 machine	Linux 	NRPE ( 22/ssh,  80/http,  3306/mysql , nfs ) 
+20 machine	Windows NRPE (TCP) 
+5  Network devices ( L3 Router )   SNMP (162/tcp)
+15 Wifi Devices		 SNMP (162/tcp)
+20 Network Printer   SNMP (162/tcp)
+--------------------------------------
+Nagios xi	30 Days trial 
+Nagios CORE ( syllabus ) Open Source and no license require 
+--------------------------------------
+Hint:   We can also practice on CheckMk 
+		https://checkmk.com/
+--------------------------------------
+Nagios agent based service
+
+	Nagios Core  (EC2)  + Nagios Plugin 
+	
+	
+	NRPE -Agent (Nagios Remote Plugin Executor)  + Plugin 
+	
+		Linux Client ( Jenkins port, ram, cpu, services : 8080/java )  
+		Windows client
+		
+---------------------------------------
+
+Step-1  set hostname and add hostname in /etc/hosts
+
+Step-2  generte ssh key and paste into jenkins /root/.ssh/authorized_keys
+
+Step-3  Go to nagios core website and copy link to download
+
+		wget https://go.nagios.org/l/975333/2024-09-17/6kqcx
+
+		ls -ltr 
+		
+-rw-r--r-- 1 root root 2065473 Sep 17 14:36 6kqcx
+
+		mv  6kqcx   nagios.tar.gz
+		 
+		tar xfh  nagios.tar.gz 
+
+		ls -ltr 
+		
+drwxrwxr-x 22 root root    4096 Sep 17 14:35 nagios-4.5.5
+-rw-r--r--  1 root root 2065473 Sep 17 14:36 nagios.tar.gz
+
+
+Step-4  Download plugins at same location of Nagios server 
+
+			wget https://nagios-plugins.org/download/nagios-plugins-2.4.11.tar.gz
+
+			ls -ltr 
+			
+Step-5  Go inside nagios-Core directory 
+
+			cd  nagios-4.5.5
+		
+Step-6
+yum install httpd php php-cli gcc glibc glibc-common gd gd-devel net-snmp openssl-devel wget unzip
+-y
+
+Step-7 
+
+useradd nagios
+groupadd nagcmd
+usermod -a -G nagcmd nagios
+usermod -a -G nagcmd apache
+
+
+Step8  
+
+		cd  nagios-4.5.5
+		
+		./configure --with-command-group=nagcmd
+		
+		make all
+		make install
+		make install-init
+		make install-config
+		make install-commandmode
+		make install-webconf
+	
+Step-9  Set up web directory authentication 
+
+ -c =  Create user and set password 
+
+ -m =  modifiy current user password 
+ 
+ 
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+
+Step-10  Cross check password of nagios user for web access
+
+	 cat  /usr/local/nagios/etc/htpasswd.users
+
+Step-11   Now exit from current directory and go inside nagios-plugins directory 
+
+
+cd ..
+ls -ltr 
+cd nagios-plugins-2.4.11
+./configure --with-nagios-user=nagios --with-nagios-group=nagios --with-openssl
+make all
+make install
+
+Step-12 Now start the service of apache(httpd)  and nagios server 
+
+For apache web server ( http:// )
+
+	systemctl  start httpd  &&  systemctl enable httpd && systemctl status httpd
+
+
+For nagios server 
+
+
+	systemctl  start nagios  &&  systemctl enable nagios && systemctl status nagios
+
+Step-13  Now cross check for port 80 shld be open from Security Group / firewall  of AWS
+
+Step-14 Cross test on browser with following address ( Kindly get your nagios server IP )
+
+	http://18.208.232.104/nagios
+	
+	
+	Username  =>  nagiosadmin
+	Passowrd  =>  **********
+	
+----------------------------xxxxx-----------------------------------------------------------
+Assignment:
+
+	1.  You will require a domain name, so kindly purchase.
+	2.  Now you need to setup Email server ( postfix , dovecot ) on Nagios server 
+			SMTPS / SMTP +  POP3 / pop3s  + IMAPS / imap 
+			25				 110			  		 143	
+	
+			yum install postfix  dovecot  mailx  -y	
+		
+	3.  enable email in nagios config file.
+	
+-----------------------------------------------------------------------
+
+
+
+	

@@ -1,0 +1,10 @@
+version: '3'  #  docker-compose version + docker engine version
+services:
+  app1:
+    image: cdtsbikaner/devops150624:nginxtestv1.2
+    ports:
+      - "8080:80"
+  app2:
+    image: cdtsbikaner/devops150624:nginxtestv1.2
+    ports:
+      - "9090:80"

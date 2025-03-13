@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp4-bingo
+  namespace:  mynewtg
+  labels:
+    env: prod
+spec:
+  containers:
+  - name: myapp4-bingo
+    image: cdtsbikaner/devops150624:nginxtestv1.2
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disk: megnatic

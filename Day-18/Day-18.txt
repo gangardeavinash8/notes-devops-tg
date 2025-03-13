@@ -1,0 +1,134 @@
+Date  11.8.24
+------------------------------------------------------
+log check in k8s pod 
+volume mount inside pod  (Backup)
+Services creation in k8s cluster (NodeIp)
+Resources allotment in k8s ( cpu / ram / hdd)
+replicacontroller 
+
+
+deployment 
+-------------------------------------------------------
+
+Watch logs of any pod 
+
+	kubectl get po -n mynewtg
+
+	kubectl logs myapp2 -n mynewtg  | less
+
+------------------------------------------------------
+Delete all pods in the specific namespace :
+
+	kubectl delete po --all  -n mynewtg
+
+
+check events in namespace
+
+	 kubectl  get events    -n mynewtg
+
+How to login inside the pod ?
+
+	kubectl  get po -n mynewtg 
+	
+	kubectl  describe po myapp7  -n mynewtg 
+	
+	kubectl  exec -ti  myapp7 -c c1 bash -n mynewtg
+
+------------------------------------------------------------
+What is microservices ?
+
+microservices =  pod / k8s obejcts within the containers along with volumes + network (Service) + resources (cpu / ram / hdd)
+
+
+namespace: namespaces are a way to organize clusters into virtual sub-cluster -> they can be helpful when diff teams / projecrs share k8s cluster. Any no of namespaces are supported within  a cluster, and each of the ns logically seperated from others but the ability to communicate with each other.
+
+standard for interview :
+	Max 110 POD per worker node
+	Max 5000 worker node can add into the k8s cluster
+	Max 1,50,000 pods can create in cluster
+	Max 3 lakh containers in Cluster.
+---------------------------------------------------------------
+
+network service in k8s :
+
+1)  Host port ->  we never use it because we have multiple pod 
+
+2) node port ->  
+					30000  to 32767 ports can use by k8s cluster 
+				  
+				NodePort   ->  worker node port 32000   
+				port       ->  service port     80 
+				targetPort ->  pod port         80
+				
+3)  cluster IP
+
+4) ingress controller 
+
+--------------------------------------------
+
+kubectl  get svc
+
+watch -n1  kubectl get all -n mynewtg
+
+
+---------------------------------------------
+Replicaset ( old name was Replica Controller) 
+---------------------------------------------
+Problem with pod (Container) creation alone.
+if you create pod and if the pod goes down then you have to create it again manually.
+pod does not support Selector  and  MatchLabel 
+
+
+1) maintain desire state of application 
+
+2) this is the higher version of Replica Controller
+
+3) Also support in Load Balancer 
+
+Replicaset yaml syntax:
+----------------------------------
+A)   replicas (desire state)
+
+B)   template ( pod defination )
+
+C)   imagename 
+----------------------------------
+rctest.yaml
+----------------------------------
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rstest1
+  namespace:  mynewtg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: myapp9
+     env: prod
+  template:
+    metadata:
+      labels:
+        app: myapp9
+        env: prod
+    spec:
+      containers:
+        - name: c1
+          image: nginx
+          ports:
+           - containerPort: 80
+
+---------------------------------------
+
+kubectl  create -f rctest.yaml
+
+kubectl  get po -n mynewtg 
+
+kubectl delete rs rstest1  -n mynewtg
+
+
+Manually scale pods in replicaset
+
+	kubectl scale --replicas=6 replicaset.apps/rstest1  -n mynewtg
+
+--------------------------------------------------------------------------------

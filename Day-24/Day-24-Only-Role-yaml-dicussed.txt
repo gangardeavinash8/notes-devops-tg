@@ -1,0 +1,65 @@
+RBAC
+
+Each and every role / clusterrole can assign by root user to local user.
+
+-----------------------------------
+
+Role-based access control (RBAC) refers to the idea of assigning permissions to users based on their role within an organization.
+
+What are role and clusterole Set of permissions
+
+	Role        ---> For particular namespace 
+	ClusterRole ---> For cluster scoped object 
+
+
+Type of role:
+
+	Node administrator
+	Storage administrator
+	Cluster administrator
+	Developer administraor [ Pod Reader ]
+
+----------------------------------------------------------
+		role 		--->		rolebindings		
+		clusterrole --->		clusterrolebindings
+
+		kubectl  api-reosurces |  less
+		
+		
+		
+	apiGroup
+	/	\
+  core   named group  
+  group    (apps)
+   (v1)		deployment, replicaset, secret, services
+   pod		
+   
+ -----------------------------------------------------------
+ Role and RoleBindings
+ 
+ Step-1   Execute two yaml i.e. as per shared in google drive for Role and Rolebindigs
+ 
+			( Only root user will run these yaml)
+ 
+ Step-2 Now login with intended user (harman)  and try to edit   /home/harman/.kube/config file
+
+	and set data as per snapshot given in Google drive
+	
+				vi   /home/harman/.kube/config 
+				
+				
+	
+ Step-3  Now try to deploy / pod using some yamls
+	
+		( Only run by user harman )
+		
+ Step-4  Cross check cluster and pods / deployment 
+ 
+		kubeclt get deploy -n mytg 
+		
+-------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx------------------
+
+Assignment:  I have already shared on yaml which contains both ClusterRole and ClusterRoleBindings code
+so only need to run this yaml and also make sure to update local user harman config file ( Manifest ). So that we can get appropriate output.
+
+------------------------------------------------------------------------

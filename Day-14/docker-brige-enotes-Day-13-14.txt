@@ -1,0 +1,64 @@
+Types of network adaptor in Docker:
+
+https://docs.docker.com/network/
+
+------------------------------------------------------------------------------
+Create Own Network bridge and Cross Test with Generic (Default) Bridge:
+---------------------------------------------------------------------------------------------
+docker  network ls 
+
+docker  network  inspect   bridge 
+
+docker pull nginx:latest
+
+docker run  -dit  -P  nginx:latest
+ 
+docker  ps  -a   
+
+docker inspect  CONTAINER-ID
+
+Create own Bridge Network:
+	
+	docker network  create tgindia --subnet 192.168.100.0/24   --gateway 192.168.100.1
+
+
+docker  network ls  
+
+docker network  inspect   tgindia 
+
+
+docker  pull centos:7
+
+
+docker  run   --name server1  -dit  centos:7
+
+
+docker  run   --name server2  --network tgindia  -dit  centos:7
+
+
+docker ps -a 
+
+-------------NOW  INSPECT EACH CONTAINER IP-------------
+
+
+docker inspect  CONTAINER-1 
+
+docker inspect  CONTAINER-2
+----------------------------------------------------------------------------------------
+
+
+How to create user define  subnet network pool of Bridge and how containers can use such IP network  pool
+
+  Create user define bridge  (172.17.0.0/16)
+ 	docker network ls
+    	
+  Create user define bridge with user network pool    (192.168.100.0/24)
+
+ Attach existing bridge with newly created bridge
+    
+     	docker network connect  tgindia server1
+    
+Cross Check
+    	ping each other
+
+-------------------------------------------------------------

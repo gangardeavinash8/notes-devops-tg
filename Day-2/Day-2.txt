@@ -1,0 +1,30 @@
+			DevOps
+		/			\
+	Developer  		Operation 
+	
+DevOps is a methodology and part of SDLC.
+
+SDLC :
+
+	1) Water fall methodology
+	2) Agile methodology
+			Here Ops team are seperate.
+			All works are modules
+			Useful for s/w dev.
+		What is scrum  ?
+			Framework 
+			
+	3) DevOps =  Dev  + Ops 
+	
+------------------------------------------------------
+
+Generic DevOps  = Custom ( K8s manually setup , Docker manually) 
+
+
+Managed DevOps Services :
+----------------------------
+AWS DevOps	=> EKS  
+
+GCP  =>  GKE
+
+AZURE  => AKS 

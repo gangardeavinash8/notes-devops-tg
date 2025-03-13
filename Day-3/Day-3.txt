@@ -1,0 +1,175 @@
+Day-1 and Day-2 enotes 
+
+https://drive.google.com/drive/folders/1wlmAa-LKJTqs7s1BUiFH8CYSKoeLMR-n?usp=drive_link
+
+-------
+Day-3
+-------
+
+Revision of permission bits in linux 
+-------------------------------------
+
+chmod 
+
+chown
+
+groupadd
+
+chgrp
+
+usermod
+
+	cp
+	rm
+	mv
+	
+----------------------------------------	
+
+  chmod 		      chown   	chgrp 
+					  user     group     Date+time    Dir
+drwxr-xr-x 		2		 root	 root  	 6 Jun 16 03:43 tgIndia
+
+
+-rw-r--r--      1        root  root  13 Jun 16 03:43 myinfo.txt
+
+ permission    SymLink
+    bit 		(Short Cut)
+ 
+------------------------------------------------
+Normal permission
+
+ r  -read  	      4
+ 
+ w  - write 	  2
+ 
+ x  - execute 	  1 
+				----
+				  7
+-------------------------------------------------
+(Pending Topic)
+	Special Permission 
+	
+		Stricky Bit
+		SGID 
+		SUID
+ACL 
+-------------------------------------------------
+
+		U  					  G					  O 
+	USER/ OWNER 			GROUP  				OTHERs 
+		
+		rwx					 rwx				 rwx 
+	
+		  7					   7				  7
+		  
+		  7					  5					  0
+		  
+		rwx  				  r-x 				 --- 
+		
+--------------------------------------------------------
+
+25165972 drwxr-xr-x 2 root root   6 Jun 16 03:43 tgIndia
+  
+  iNode
+ (Unique int.
+   number) 
+   
+		the location are associated with inode number k/as 
+		   
+		   Symlink ( Symbolic link) [ Short Cut ]
+		   Hard Link  ( Replica of origional )
+---------------------------------------------------------------
+
+	r = 4
+	w = 2
+	x = 1
+	
+	u  = user
+	g  = group 
+	o  = other 
+    a  = all 
+	
+	   +  =  allow 
+	   -  =  deny 
+	   
+	   =  assignent 
+--------------------------------------------
+		d   rwx    r-x    r-x	
+              U     G      O 
+			 7	    5      5
+	
+	
+	
+	
+	chmod  ugo+rwx  myscript1.sh
+
+			OR  
+
+	chmod  777    myscript1.sh  
+	
+			OR 
+			
+	 chmod  a=rwx  myscript1.sh
+
+chmod  = change modification of permissions bit
+
+chown  = change owner name 
+
+groupadd 
+		
+		groupadd India
+	
+chgrp   
+		chgrp India  Bikaner/
+		chgrp India  myscript.sh  
+
+tail  
+		tail -5  /etc/group
+
+head 
+
+How can we add NEW user in Group ?
+
+	 groupadd  employees
+	 
+	 
+	useradd -G  employees ravi
+
+	useradd -G  employees prateek
+	
+	useradd -G  employees manish
+
+	tail -5  /etc/group  
+	
+How can we add Existing user in GROUP ?
+
+	usermod  -G  employees ekam
+	
+------------------------------------------------
+		groupadd   game-world
+		
+			useradd  -G  game-world  sohel
+		
+		groupadd  old-friends
+		
+			usermod  -G  old-friends  sohel 
+		
+		groupadd  relative
+		
+			usermod  -G relative  sohel  
+			
+		groupadd IBM
+		
+			usermod   -Ga  IBM  sohel  
+	
+	Solution ?
+	
+			usermod   -Ga  relative, old-friends, game-world   sohel  
+		
+--------------------------------------------------------------------------
+
+		usermod  -Ga   IBM  ravi, prateek, manish    ( WRONG )
+		
+		
+		chfn 
+-------------------------------------------------------------------------

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rstest1
+  namespace:  mynewtg
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+     app: myapp9
+     env: prod
+  template:
+    metadata:
+      labels:
+        app: myapp9
+        env: prod
+    spec:
+      containers:
+        - name: c1
+          image: cdtsbikaner/devops150624:nginxtestv1.2
+          ports:
+           - containerPort: 80
+        

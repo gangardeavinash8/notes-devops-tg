@@ -1,0 +1,51 @@
+yaml / yml  
+-------------------
+integration  + serialization & config of python , java, c++ , k8, perl 
+
+1. Keypair 
+
+	key:value
+	
+		0:ravi
+		1:masish
+		2:harish
+		
+		[ 66,55,433,33,222,11 ]
+		   0  1  2   3  4   5
+		   
+		   
+		   ["Manish","kumar","sharam"]
+		       0		1      2
+			   
+2. Dictionary /  map
+
+	Manish:
+		job: IT engg
+		age: 30 year
+		salary: 50000
+		
+	
+
+3. Array / List  (array)
+
+	Similar data collection k/as array.
+	
+	names : ["ravi","manish","rakesh" ]  => String Array
+	
+	[ 66,55,433,33,222,11 ]  => Integer array 
+	
+	['G','Q','R'] => char array
+
+		names:
+		      - ravi
+			  - manish
+			  - rakesh
+			  
+			  
+-------------------------------------------------------------------
+
+
+			   
+			
+		
+		

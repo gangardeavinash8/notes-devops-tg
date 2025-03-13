@@ -1,0 +1,90 @@
+API resources in k8s
+
+We never use RC in prodcution environment.
+
+ - Migration of Pod 
+ - Deployment Avoid manually migraton of s/w version in development.
+ - Deployment base is Replica Set 
+ - namespace oriented resource of k8s 
+ 
+test
+	nginx-1.14  -->  nginx-1.15  --> nginx-1.16 -->  nginx-1.17
+	  version1			ver2			ver3			ver4
+prod
+
+	nginx-1.14 -> nginx-1.17 -> nginx-1.18 -> nginx-1.20 
+	
+	nginx-1.17  => nginx-1.14
+
+kubectl scale --replicas=10 deployment.apps/myapp10   -n mynewtg
+
+Rolling update in deployment :
+
+ (Record history of migration) 
+ kubectl set image deployment myapp10 c1=nginx:1.18 -n mynewtg --record
+
+ kubectl set image deployment myapp10 c1=nginx:1.19 -n mynewtg --record
+ 
+  kubectl set image deployment myapp10 c1=nginx:1.20 -n mynewtg --record
+  
+   kubectl set image deployment myapp10 c1=nginx:1.21 -n mynewtg --record
+   
+History 
+	 kubectl rollout history deploy myapp10 -n mynewtg
+
+Rollback :
+
+	kubectl rollout undo deploy myapp10  -n mynewtg --to-revision=4
+
+How can we check surge and unavailble pods in deployment 
+
+	kubectl describe deploy myapp10  -n mynewtg  |less
+
+Edit deployment for update surge and unavailable pods :
+
+	kubectl edit deploy myapp10 -n mynewtg
+
+	
+a) Deployment
+		
+		Deployment = Replica set (Desirestate)  
+							+ 
+					 rolling update 
+					        + 
+					 roll back (prod) 
+	
+	
+b) Daemonset = number of replicas =  no of worker node 
+
+	
+kubectl  get all --all-namespaces
+Use: 
+		kube-proxy
+		network cni
+
+Monitoring for worker node:
+
+
+	
+resource allocation in k8s pods (Microservices)
+
+free  -hg
+
+cat  /proc/cpuinfo |  less
+
+	2 CPU 	
+	4 GB RAM
+
+1 CPU =  250m + 250m + 250m + 250m 
+
+
+1GiB  =  1024 MiB
+
+4GiB =  4096 MiB
+-----------------------------------------------------
+interview question :
+
+What is Kubernetes CrashLoopBackOff?
+When a Kubernetes container repeatedly fails to start, it enters a ‘CrashLoopBackOff’ state, indicating a persistent restart loop within a pod. This error often occurs due to various issues preventing the container from launching properly. 
+
+Common causes include insufficient memory or resource overload, deployment errors, third-party service issues like DNS errors, missing dependencies, or container failures due to port conflicts. 

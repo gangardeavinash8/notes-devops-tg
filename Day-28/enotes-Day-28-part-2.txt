@@ -1,0 +1,85 @@
+Confgirue Nagios-server 
+
+	Log directory 
+	
+		/usr/local/nagios/var/nagios.log
+
+
+	Config directory (Home)
+
+		cd  /usr/local/nagios/
+	
+		ls -ltr 
+
+	Config file:
+	
+		/usr/local/nagios/etc/nagios.cfg
+		
+		in this config file you need to set Email where you will get alert.
+	
+			admin_email=cdtsbikaner@gmail.com
+
+		
+		
+Now lets us  see nagios.cfg file :
+
+Enable this for custom data to add remote client.
+			
+	cfg_dir=/usr/local/nagios/etc/servers
+
+now create directory under 
+
+	mkdir /usr/local/nagios/etc/servers
+	
+	cd /usr/local/nagios/etc/servers
+	
+	chown  nagios:nagios servers/  -R
+--------------------------------------------
+
+	cd  /usr/local/nagios/etc/servers
+		
+	vi  mymachine.cfg 
+	
+define host{
+   use                           linux-server
+   host_name                     jenkins.tg.com
+   address                       172.31.33.55
+   max_check_attempts            5
+   check_period                  24x7
+   notification_interval         30
+   notification_period           24x7
+}
+
+
+define service {
+
+    use                     local-service           ; Name of service template to use
+    host_name               localhost
+    service_description     PING
+    check_command           check_ping!100.0,20%!500.0,60%
+}
+
+
+define service {
+
+    use                     local-service           ; Name of service template to use
+    host_name               localhost
+    service_description     Current Users
+    check_command           check_local_users!20!50
+}
+
+
+define service {
+
+    use                     local-service           ; Name of service template to use
+    host_name               localhost
+    service_description     SSH
+    check_command           check_ssh
+    notifications_enabled   0
+}
+	
+------------------------------------------------------------
+
+Now login on remote machine to setup NRPE 
+
+	

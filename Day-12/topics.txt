@@ -1,0 +1,24 @@
+ARG		-->  image
+
+ENV 	-->  container 
+
+Entrypoint vs CMD 
+
+inspect 
+	- image
+	- container
+	- volume 
+	- network
+
+Volume
+	-	bind mount
+	-	volume 
+	-	tmpfs
+
+Network
+	- bridge 
+
+Mysql image build 
+
+Wordpress deploy.
+-------------------------------------

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp10
+  namespace: mynewtg
+spec:
+  replicas: 5
+  selector:
+   matchLabels:
+     env: Prod
+     app: nginx
+  template:
+   metadata:
+    labels:
+     env: Prod
+     app: nginx
+   spec:
+    containers:
+      - name: c1
+        image: nginx:1.15
+        ports:
+          - containerPort: 80

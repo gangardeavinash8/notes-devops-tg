@@ -1,0 +1,76 @@
+Network :  Bridge adaptor / ingress 
+
+UNICAST
+
+	CLASS A  (1- 126)
+					
+					10.0.0.1  ( private)
+					
+					11.22.23.24 (Public IP)
+	
+	CLASS B ( 128-191)
+	
+	
+				172.16.x.y  
+				
+				..........
+				
+				
+				172.31.x.y
+				
+	
+	CLASS C	( 192 - 216)
+	
+			
+	
+MULTICAST
+
+	CLASS D
+	
+	
+	CLASS E 
+	
+	
+	
+
+Wordpress website -->  Apache + mysql
+
+------------------------------------------
+
+Docker Compose 
+
+
+Multiple container can launch by single yaml file , so that we can use docker-compose. 
+
+1) Docker Engine
+
+2) Download Docker Compose 
+
+
+https://dockerlabs.collabnix.com/intermediate/workshop/DockerCompose/How_to_Install_Docker_Compose.html
+
+
+chmod +x /usr/local/bin/docker-compose
+
+
+ln -s  /usr/local/bin/docker-compose   /usr/sbin/
+
+
+	OR 
+	
+cp  /usr/local/bin/docker-compose   /usr/sbin  
+
+docker-compose --version
+
+
+We can launch multiple container thru single yaml file.
+
+When we use docker-compose up -d 
+
+	Default network and default vol create from scratch for containers.
+	
+docker-compose down
+
+	remove containers
+	remove volume and network of default creation
+	

@@ -1,0 +1,223 @@
+RBAC 
+	                                          Role based access control 
+	
+
+        Case1) 	
+        useradd ekam
+        passwd ekam 
+       
+       	master node -->  ec2-user login 
+       	
+       	and try access cluster 
+       	
+       	answer -->  We can not access cluster
+
+        Solution:
+
+
+			we copied  /etc/k8s/admin.conf   -->  /home/ekam
+			again test we can not access the same.
+			
+			we will try this 
+			
+			kubectl  get no  --kubeconfig /home/ekamadmin.conf
+			
+				we can use easily with  using --kubeconfig
+				
+			vi  /home/ekam/.bashrc
+			
+			export KUBECONFIG=/home/ekam/admin.conf
+
+			save and exit
+			
+		source  .bashrc              ------------------------------------------  RUN file 
+		
+			echo $KUBECONFIG 
+		
+	and now test cluster with --kubeconfig 
+	
+			kubectl  get no
+Case2)  
+
+	just go to wn1 / wn2  and try access cluster  ( We were logined as  root)
+	
+	answer -->  We can not access cluster
+	
+	master (/etc/k8s/admin.conf)
+		|
+		|		(sent via scp)  (secure copy)
+		|
+	wn1.tg.com  
+
+After sent admin.conf file at wn1.tg.com:/opt
+
+	kubectl  get no  --kubeconfig /opt/admin.conf
+
+	 kubectl  get all  -n mytg --kubeconfig /opt/admin.conf
+
+
+	
+Answer:   Yes now we can access it.
+
+
+--------------------------------------------------------------
+We are  crearting user in linux because k8s cluster doest have any feature of user creation.
+Once we create csr and private key for the user(harman), then we will create self signed certificate.
+
+
+
+step-1  create user 
+
+	useradd harman
+	passwd harman
+	
+step-2 
+login and cross check cluster you will the error while acces cluster info.
+
+step-3 again login with root
+(root for harman user inside /home/harman/)
+  
+  cd  /home/harman/
+  
+ openssl req  -new -newkey  rsa:2048  -nodes -keyout harman.key -out harman.csr  -subj "/CN=harman"
+ 
+ ls -ltr  
+ 
+ chown  harman:harman  *
+
+
+
+
+
+Step-4 Now we will create Self signed request 
+
+explained about  admin.conf , so that we create own manifest file (config) and put under
+		
+		/home/harman/.kube/config 
+		
+Tip:  Kindly use this website for dummy / sample config file
+		https://www.redhat.com/sysadmin/kubeconfig
+		
+			OR 
+			
+		kubectl config view
+
+			copy this output and alter accordingly
+	
+		
+Step5(root for harman user)   to create personal config file of harman user we will copied the admin.conf as below
+
+	cp  /etc/kubernetes/admin.conf   /home/harman/.kube/config
+
+	chown harman:harman  /home/harman/.kube/config
+
+Step-6  (root for harman user inside /home/harman/)
+
+ cd  /home/harman/
+ 
+ 
+openssl  x509 -req -in harman.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key  -CAcreateserial -out harman.crt  -days 365 
+
+
+ ls -ltr  
+
+
+  chown harman:harman  *
+  
+  ls -ltr  
+  
+output 
+  
+  harman.csr
+  harman.key
+  harman.crt
+
+
+Step-8  now login with harman  and try to create config file as below
+
+Also do some practice before edit :
+
+	cat harman.crt  | base64 -w0
+	
+		Copy this and paster in notepad++
+	
+	cat harman.key  | basde64 -w0  
+	
+		Copy this and paster in notepad++
+		
+----------------------------------------------------
+
+		kubectl  config view 
+		
+		
+		vi  /home/harman/.kube/config 
+		
+			Dont touch following data in this file 
+			
+	PART-A)			
+			apiVersion: v1
+			clusters:
+			- cluster:
+				certificate-authority-data: 
+
+	PART-B and Part-c of this config file 
+	
+- context:
+    cluster: kubernetes
+    user: harman
+  name: harman@kubernetes
+current-context: harman@kubernetes
+kind: Config
+preferences: {}
+
+
+users:
+- name: harman
+  user:
+    client-certificate-data: CRT-File Data 
+    client-key-data: Key-File-Data
+		
+		
+
+--------------------------------------------------------------------
+
+	step-9  Cross check  
+	
+ kubectl get no
+Error from server (Forbidden): nodes is forbidden: User "harman" cannot list resource "nodes" in API group "" at the cluster scope
+
+	
+	
+	YAHA tak ho jaye to samajh lena all good.
+
+--------------------------------------------------------------------
+Type of role:
+
+	Node administrator
+	Storage administrator
+	Cluster administrator
+	Developer administraor [ Pod Reader ]
+
+Authorization ( RBAC )
+
+What are role and clusterole Set of permissions
+
+	Role        ---> For particular namespace 
+	ClusterRole ---> For cluster scoped object 
+
+Role  		 -->  RoleBinding
+ClusterRole  -->  ClusterRoleBinding
+
+	Namespace  -->  mytg
+	Permission -->  Pod[Create,list] 
+	
+---------------------------------------	
+	apiGroup
+	/	\
+  core   named group  
+  group    (apps)
+   (v1)
+   
+   
+ Imp:  Role + Clusterrole can be bind with multiple users.  
+		

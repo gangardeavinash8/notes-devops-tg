@@ -1,0 +1,50 @@
+    1  whoami 
+    2  id 
+    3  exit 
+    4  id
+    5  pwd
+    6  whoami 
+    7  date 
+    8  cal 
+    9  id
+   10  useradd ekam
+   11  passwd  ekam
+   12  su - ekam 
+   13  man whoami
+   14  man id 
+   15  man pwd
+   16  man sudo
+   17  man man 
+   18  man man
+   19  man useradd
+   20  man passwd
+   21  man -k
+   22  man -l
+   23  man k
+   24  man -1  useradd
+   25  man 1  useradd
+   26  man 1 pwd
+   27  man 8 pwd
+   28  man 4  passwd
+   29  man 1 passwd
+   30  man 2 passwd
+   31  java --help 
+   32  docker --help 
+   33  date 
+   34  cal 
+   35  date 
+   36  ls  /usr/share/zoneinfo/Asia/Kolkata
+   37  date
+   38  timedatectl
+   39  timedatectl list-timezones
+   40  timedatectl list-timezones 
+   41  date
+   42  timedatectl set-timezone 'Asia/Kolkata'
+   43  date
+   44  yum install httpd -y
+   45  systemctl  start httpd 
+   46  curl ifconfig.io
+   47  vi  /var/www/html/index.html
+   48  tail -f  /var/log/httpd/access_log 
+   49  history 
+   50  history  >  /home/ec2-user/history-15.6.24

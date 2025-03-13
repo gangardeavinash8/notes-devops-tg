@@ -1,0 +1,28 @@
+There are three important API resources when it comes to managing stateful applications in Kubernetes:
+
+StatefulSet (STS)
+PersistentVolume (PV)
+PersistentVolumeClaim (PVC)
+
+
+PV and PVC 
+--------------
+persistant volume (PV) and persistant volume claim (PVC)
+
+kubectl api-resources |  less
+
+	PV are not namespace oriented.
+	PVC are come under the namespace.
+
+Provisoner 
+
+https://kubernetes.io/docs/concepts/storage/storage-classes/
+
+
+now you have to create 2 yaml for pv and pvc and 1 yaml (manifest) for Nginx deploy with Claim storage (PVC).
+
+1. pv.yaml
+2. pvc.yaml
+3. nginx-deploy-with-pvc.yaml 
+
+--------------------------------------------------------------------------- 

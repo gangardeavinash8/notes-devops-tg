@@ -1,0 +1,42 @@
+Kindly form my project --->   https://github.com/cdtsbikaner/tomcat8.git
+
+Also create Dockerhub token for creating secret in k8s 
+
+
+------------------------------------------------------------------------
+
+
+Step-1  create secret for pull custom image from dockerhub registry
+
+
+docker create secret docker-registry mypasswd-for-custom-img --docker-server=https://hub.docker.com --docker-username=cdtsbikaner --docker-password=CHOOSE-YOUR-OWN-TOKEN -n mytg
+
+Step-2 
+
+ kubectl  get secret -n mytg
+
+ kubectl describe secret mypasswd-for-custom-img  -n mytg
+
+Step-3  make sure you yaml files are updated with proper namespace as per k8s 
+	
+		Hint :  Kindly update you git files 
+		
+step-4  Add this shell execute in your pipeline steps : 
+
+#!/bin/bash
+echo "This build number is  ---> " ${JOB_NAME}-${BUILD_NUMBER}
+docker build -t cdtsbikaner/devops150624:${BUILD_NUMBER}  --no-cache .
+docker image push cdtsbikaner/devops150624:${BUILD_NUMBER}
+kubectl delete svc mysvc2 -n mytg || echo "No such service, Continue now"
+docker rm -f $(docker ps -aq)
+sed -i "s/BUILD_NUMBER/${BUILD_NUMBER}/g"  tomcat-deploy.yaml
+kubectl apply -f service.yaml 
+kubectl apply -f tomcat-deploy.yaml 
+kubectl get svc -n mytg
+kubectl get all -n mytg
+
+------------------------------------------------
+
+cdtsbikaner@gmail.com
+
+------------------------------------------------

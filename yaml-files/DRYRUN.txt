@@ -1,0 +1,42 @@
+
+
+DRY RUN COMMAND FOR VARIOUS K8S RESOURCES 
+
+1) DEPLOYMTNT
+
+   kubectl create deployment myapp --image=nginx --dry-run=client -o yaml
+
+2) POD
+
+   kubectl run mypod --image=nginx --dry-run=client -o yaml
+
+3) SERVICE 
+
+   kubectl expose deployment myapp --port=80 --target-port=80 --type=ClusterIP --dry-run=client -o yaml
+
+4) CONFIG MAP 
+
+   kubectl create configmap myconfig --from-literal=key=value --dry-run=client -o yaml
+
+5) SECRET 
+
+  kubectl create secret generic mysecret --from-literal=password=securepass --dry-run=client -o yaml
+
+
+6) PERSISTENT VOLUME 
+
+  kubectl create -f pv.yaml --dry-run=client
+
+
+7) PERSISTENT VOLUME CLAIM 
+
+  kubectl create -f pvc.yaml --dry-run=client
+
+8) INGRESS 
+
+  kubectl create ingress myingress --rule="myapp.com/*=myapp:80" --dry-run=client -o yaml
+
+9)  Role & RoleBinding
+
+    kubectl create role myrole --verb=get,list --resource=pods --dry-run=client -o yaml
+kubectl create rolebinding mybinding --role=myrole --user=myuser --dry-run=client -o yaml

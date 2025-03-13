@@ -1,0 +1,102 @@
+Load Balancer algo:
+
+1) Round robine 
+2) IP hash
+3) Least Connection
+4)  Hash  (Request URL)
+
+
+
+Networking services in k8s :
+
+1)  NodePort   (30000 to  32767)
+2)  ClusterIP (provide private IP for nodes and access with single point from www)
+3)  Load balancer (LB)  =  AWS ALB ( Path based routing )
+
+
+Ingress ( Th )
+--------------------
+FEATURE STATE: Kubernetes v1.19 [stable]
+
+API object that manage external access to the services (NodePort, Load Balancer, ClusterIP)  in a cluster typically http / https.
+
+Ingress may provide:
+	* LB
+	* SSL Termination 
+	* Name based virtual hosting 
+		(Single IP address can be use for multiple website)
+		
+		IP address (Elastic IP)    -> 	 student.tg.com  (EC2)	(5 POD) 
+										 result.tg.com			(10  POD)
+										 reg.tg.com 			(15 pod)
+										 www.tg.com			(2 POD)
+										 mail.tg.com 		(3 POD) 
+										 
+Ingress  Controller  ( Type of LB design for k8s cluster)	
+Ingress Recource	
+-------------------------------------------------------------------	
+
+HA Proxy (open source)  = K8s ingress + LB +  Reverse proxy  
+Nginx 	 (open source)	= K8s ingress + LB +  Reverse proxy  
+	
+		VirtualHosting :
+				
+		vi  /etc/httpd/conf.d/tg.com.conf 
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  www.tg.com 
+						DocumentRoot   /var/www/html/www/
+						
+					</VirtualHost>
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  student.tg.com
+						DocumentRoot   /var/www/html/student/
+					</VirtualHost>
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  reg.tg.com
+						DocumentRoot   /var/www/html/reg/
+					</VirtualHost>
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  result.tg.com
+						DocumentRoot   /var/www/html/result/
+					</VirtualHost>
+					
+		vi  /etc/httpd/conf.d/rajasthan.com.conf 
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  www.rajasthan.com
+						DocumentRoot   /var/www/html/raj/
+					</VirtualHost>
+					
+					<VirtualHost 172.31.1.2:80>
+						Domain  www.rajasthan.com
+						DocumentRoot   /var/www/html/raj/
+					</VirtualHost>
+					
+--------------------------------------------------
+
+Can we map  one domain with multiple IP address ?
+	NO
+but  we can map one IP with multiple domains  ( Name based virtual hosting)
+	YES
+-----------------------------------------------------
+
+
+Ref for ingress controller + resource 
+
+https://platform9.com/learn/tutorials/nginix-controller-via-yaml
+
+You can pull from following location 
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+
+
+
+OR 
+
+
+https://github.com/kubernetes/ingress-nginx
+------------------------------------------------------------------------

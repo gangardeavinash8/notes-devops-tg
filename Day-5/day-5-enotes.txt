@@ -1,0 +1,20 @@
+ps  -aux 
+netstat
+nmap
+top / htop
+wget
+ifconfig
+host
+dig
+curl
+nslookup
+------------------------------------------------
+yum /dnf    OR   apt-get	
+
+cronjob    
+
+ssh-keygen and share with other machine  ( Useful in ANSIBLE )   
+
+------------------------------------------------
+
+introduction to Git and Github

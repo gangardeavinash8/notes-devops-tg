@@ -1,0 +1,31 @@
+SDLC :  Software Development Life Cycle
+
+		1) WaterFall model
+		2) Agile Methodology
+		3) DevOps - Linux , Git, Docker, k8s, ansible, terraform, jenkins(CI/CD)
+		
+open source  = jenkins 
+-------------------------------
+github and Gitlab ->  actions -->  CI / CD 
+
+Attlancean = Bamboo (paid) , conflucen, jira, bitbucket
+
+Travis CI
+
+Circle CI 
+
+SonarQube :  Continuose inspection of code quality and we can integrate this tool in jenkins pipeline.
+
+--------------------------------
+
+CI:  Cont. integration
+CD : Cont. Delivery ( Release for Test environment )/ Cont. Deployment( buid for prod)
+
+	deployment --->  Config / isntallation
+-------------------------------------	
+provision tool   --> terraform
+Config mgmt tool --> ansible (AgentLess) , Chef and puppet,salstack 
+
+-------------------------------------------
+
+https://pkg.jenkins.io/redhat/

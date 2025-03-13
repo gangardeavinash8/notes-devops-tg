@@ -1,0 +1,105 @@
+Helm Chart (Bhupendra sir youtube video)
+
+https://www.youtube.com/watch?v=nH6LDrl6xpI&t=3590s
+
+
+------------------------------------------------------------
+
+Nagios remote port check issue solution :
+
+https://forums.meulie.net/t/check-tcp-keeps-throwing-port-must-be-a-positive-integer/5665
+
+-------------------------------------------------------------
+
+How to install check_docker for nagios monitoring 
+
+https://github.com/timdaman/check_docker
+
+-------------------------------------------------------------
+
+Promethus :
+
+Stadard metrics
+	1.  I/O
+	2.  Storage 
+	3.  Network 
+	4.  CPU
+	5. Process 
+	
+What exactly prom. server  do ?
+
+	Health check
+		Resource
+		services
+	alerts
+	Graph plot for visulation
+	
+-----------------------------------------------------------
+
+official website of prom server
+-----------------------------------
+
+https://prometheus.io/download/
+
+
+
+
+official website of grafana server 
+
+
+
+We will use same EC2 instance for Grafana + Prom server 
+
+Installation guide  (prom server):
+	TCP :  9090 and 9100
+
+	https://www.fosslinux.com/10398/how-to-install-and-configure-prometheus-on-centos-7.htm
+	
+Installation guide ( grafana )
+	TCP :  3000 
+	
+	https://centlinux.com/install-grafana-on-centos-7/
+	
+	
+PID for k8s cluster grafana Dashboard 
+
+	6417
+	
+PID for linux dashboard
+
+	10180
+	
+----------------------------------------------------------------
+GC (Garbage Collection) logs analyze 
+
+https://gceasy.io/
+
+-----------------------------------------------------------------
+V.V.Imp.
+
+Assignment :  You have install node_exporter on K8s master + wn1 + wn2 
+								
+								OR  /  ELSE
+								
+				you can create pod for node_exporter via Yaml file and deploy using daemonset. 
+				
+			THen add this cluster info in grafana visulization with dashboard PID 6417
+		
+Now you have to add alert manager for telegram, so that you will require bot ID and channel name.
+--------------------------------------------------------------------
+	Email:  cdtsbikaner@gmail.com 
+
+-------------------------------
+Shell scripting 
+-------------------------------	
+	variable
+	input
+	output
+	for  , while
+	switch case 
+	if 
+		case
+
+	fi
+	function 
+-------------------------------

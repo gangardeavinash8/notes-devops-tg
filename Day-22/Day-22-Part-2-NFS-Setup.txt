@@ -1,0 +1,140 @@
+Kindly update in /etc/hosts on each node.
+
+vi /etc/hosts 
+
+172.31.87.94   master.tg.com
+172.31.94.236  wn1.tg.com
+172.31.80.183  wn2.tg.com
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost6 localhost6.localdomain6
+
+----------------------------------------------
+File sharing (Directory File)
+
+		/movies
+	/			\
+ wn1.tg.com		wn2.tg.com 
+
+
+Red hat:
+
+NFS v3 ( Network file sharing ) 
+------------------------------------------------------------------
+master.tg.com 
+------------------------------------------------------------------
+1) yum install nfs-utls -y
+2) rpm -qa  |  grep nfs*
+3) create 15 Gb of volume in AWS and attach to Master Node.
+4) Go to master node and use following command
+
+	lsblk
+
+5)  Format the newly create 15Gb partition
+
+	mkfs.xfs -f  /dev/nvme1n1
+
+6)  mount this volume on specific location in /
+
+	mkdir  /movies
+	
+	vi  /etc/fstab 
+	
+/dev/nvme1n1           /movies     xfs    defaults,noatime  0   0
+	
+
+	save and exit 
+
+7) Whatever you have mentioned in /etc/fstab , the kernel will mount it run time by using this command. If we wont use this command then need to restart OS. 
+
+ mount -a 
+
+8) cross check all the mounted partitions
+
+	df -hT 
+
+9) Now start nfs on master 
+
+	systemctl  start nfs
+	systemctl  enable  nfs
+	systemctl status   nfs
+
+10)  open config file of nfs 
+
+	vi  /etc/exports 
+	
+	/movies 		*(ro,sync)
+	
+save and exit 
+
+
+Note:
+here sync means synchronize the shared dir between master and worker node.
+here ro means read only
+
+
+
+11)  systemctl restart nfs 
+
+12)  cross check nfs shared directory
+		
+		showmount -e 
+		
+------------------------------------------------------------------------
+wn1.tg.com   + wn2.tg.com 
+------------------------------------------------------------------------
+1) yum install nfs-utils -y
+
+2)  systemctl  start nfs 
+
+3) systemctl enable nfs
+
+4)  rpm -qa  |  grep nfs-utils
+
+5)  showmount -e  master.tg.com 
+
+6)Now cross check master node shared directory 
+
+	showmount -e master.tg.com 
+			OR
+	showmount -e 172.31.87.94
+	
+7) create endpoint for mountpoint
+
+	mkdir /data1
+
+8) now make permanent mount point on wn1.tg.com
+
+
+	vi /etc/fstab
+	
+	
+master.tg.com:/movies                   /data1       nfs    defaults          0   0
+
+
+9)  /etc/fstab file has updated now need to remout all partitions 
+
+	mount -a
+
+10) cross check wheather servers shared  directory has mounted or not ?
+ 
+	df -hT
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+		
+	
+
+
+
+
+
+NFS v4 ( network file sharing )   == EFS
+
+PV and PVC
+---------------------------------------------
+
+RBAC

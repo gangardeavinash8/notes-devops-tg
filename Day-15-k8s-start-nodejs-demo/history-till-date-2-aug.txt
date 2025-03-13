@@ -1,0 +1,68 @@
+1026  free -hg
+ 1027  cd tg/
+ 1028  mkdir node
+ 1029  cd node/
+ 1030  vi  Dockerfile
+ 1031  vi  app1.js
+ 1032  docker images
+ 1033  docker ps -a
+ 1034  ls -ltr
+ 1035  vi  app1.js
+ 1036  vi  Dockerfile
+ 1037  docker build -t cdtsbikaner/devops150624:nodejsv1  --no-cache .
+ 1038  vi Dockerfile
+ 1039  vi  Dockerfile
+ 1040  docker build -t cdtsbikaner/devops150624:nodejsv1   .
+ 1041  vi  Dockerfile
+ 1042  docker build -t cdtsbikaner/devops150624:nodejsv1   .
+ 1043  vi  Dockerfile
+ 1044  docker images
+ 1045  docker run --name c1  -dit -P  5ac
+ 1046  docker ps -a
+ 1047  docker exec -ti  c1  bash
+ 1048  docker images
+ 1049  docker ps -a
+ 1050  curl http://127.0.0.1:32772
+ 1051  curl http://127.0.0.1:8080
+ 1052  curl http://127.0.0.1:32771
+ 1053  docker ps -a
+ 1054  cd ..
+ 1055  ls -ltr
+ 1056  cd dc/
+ 1057  ls -ltr
+ 1058  vi docker-compose.yaml
+ 1059  docker images
+ 1060  docker ps -a
+ 1061  docker login
+ 1062  docker images
+ 1063  docker ps -a
+ 1064  docker container commit  21b452fe9379 cdtsbikaner/devops150624:nodejsv1
+ 1065  docker push cdtsbikaner/devops150624:nodejsv1
+ 1066  cd ..
+ 1067  cd node/
+ 1068  vi  app1.js
+ 1069  vi Dockerfile
+ 1070  docker images
+ 1071  docker ps -a
+ 1072  docker rm -f  c1
+ 1073  docker system prune
+ 1074  docker ps -a
+ 1075  docker images
+ 1076  docker rmi -f 1c9
+ 1077  docker images
+ 1078  docker ps -a
+ 1079  cd ..
+ 1080  cd dc/
+ 1081  cp  docker-compose.yaml   docker-compose-nodejs.yaml
+ 1082  vi docker-compose-nodejs.yaml
+ 1083  docker-compose help
+ 1084  docker-compose  -f  docker-compose-nodejs.yaml up -d
+ 1085  docker ps -a
+ 1086  vi docker-compose-nodejs.yaml
+ 1087  docker-compose scale app1=2 app2=3
+ 1088  docker-compose -f  docker-compose-nodejs.yaml scale app1=2 app2=3
+ 1089  docker ps -a
+ 1090  docker-compose -f  docker-compose-nodejs.yaml scale app1=1 app2=0
+ 1091  docker ps -a
+ 1092  docker-compose -f  docker-compose-nodejs.yaml scale app1=3 app2=2
+ 1093  docker ps -a

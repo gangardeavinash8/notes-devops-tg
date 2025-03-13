@@ -1,0 +1,105 @@
+Discuss abt last assignments 
+	- Dockerfile ( mysql, nodejs)
+
+Networking in Docker 
+Docker-compose
+-------------------------------------
+
+
+ifconfig 
+
+	eth0
+	lo
+	
+yum install docker -y
+
+systemctl start docker  
+
+ifconfig 
+
+	eth0
+	lo		-->   127.0.0.1  / localhost  / Loopback 
+	docker0
+------------------------------------------------------
+
+	IP address  192.168.1.1
+	Subnet mask ( Netmask )	 = No of network bits + No of host bit 
+	Gateway 
+------------------------------------------------------
+
+	192.168.0.100/24 
+
+		or 
+	
+	192.168.0.100/255.255.255.0
+	
+	127.0.0.1/8
+		or
+	127.0.0.1/255.0.0.0
+	
+---------------------------------------------------------
+net-tools =  ifconfig , nslookup, ip a 
+bind-utils = dig , host , nmap
+----------------------------------------------------------
+
+docker network range  =   172.16.0.0/16  to  172.31.0.0/16
+
+
+UNICAST :
+
+CLASS A  (1- 126)
+				10.x.y.z
+				
+				Ex:  
+						13.56.44.33 (PUBLIC IP) 
+				
+CLASS B  (128 to 191) 
+				172.16.x.y   to  172.31.x.y
+				
+				Ex:  183.44.33.22 ( PUBLIC )
+				
+CLASS C (192 to 216)
+
+
+				192.168.x.y 
+				
+				Ex:  192.167.88.55  ( PUBLIC )
+				
+------------------------------------------------------------
+
+	192.168.100.0 / 255.255.255.0   => Network IP
+	
+		192.168.100.1  
+		
+		.............
+		
+		192.168.100.254 
+
+	
+	192.168.100.255  => Broadcast Address
+------------------------------------------------------------
+
+	docker network  create tgindia --subnet 192.168.100.0/24 --gateway 192.168.100.1
+
+	docker network ls 
+
+new container launched and assigned custom docker network adaptor :
+
+	docker run --name c2 --network  tgindia  -dit -P 4914a28c969c
+
+	docker run --name c3  --network  tgindia  -dit -P 4914a28c969c
+	
+	docke ps -a 
+	
+	docker exec  -ti c2  bash 
+
+	ifconfig 
+	
+	ping 
+-------------------------------------------------------------------------------
+
+	wordpress 
+		
+		Frontend = php 
+		
+		Backend  =  mysql /mariadb 

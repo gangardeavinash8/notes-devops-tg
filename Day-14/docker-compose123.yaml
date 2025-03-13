@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mydb:
+    image: mysql:latest
+    volumes:
+      - myvol1:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=redhat
+      - MYSQL_DATABASE=mytg
+      - MYSQL_USER=ekam
+      - MYSQL_PASSWORD=jaipur@123
+    networks:
+      - tgindia
+
+  mywp:
+    depends_on:
+      - mydb
+    image: wordpress:latest
+    volumes:
+      - "myvol2:/var/www/html"
+    restart: always
+    ports:
+      - "32885:80"
+    environment:
+      - WORDPRESS_DB_HOST=mydb:3306
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=redhat
+      - WORDPRESS_DB_NAME=mytg
+    networks:
+      - tgindia
+volumes:
+  myvol1:
+  myvol2:
+networks:
+  tgindia:

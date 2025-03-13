@@ -1,0 +1,64 @@
+git    --> command 
+----------------------------------
+Source Code Management 
+	/		\
+ cvcs 		dvcs 
+ svn         git 
+ 
+----------------------------------
+CVCS :
+		Repository  ( Remote Server )    
+			
+DVCS :  
+			git 
+			
+				local repo  
+				 (Snapshot  / saved data) 
+			github 
+				remote repo 
+====================================	
+Step-1  yum install git -y 
+
+Step-2 pwd 
+
+Step-3   
+       git config --global user.name "Ekam"
+       git config --global user.email "ekam@gmail.com"
+	   git init 
+
+Step-4  ls -la  
+
+Step5 
+		cd  /opt/
+		mkdir   /opt/myrepo
+		
+		cd  /opt/myrepo 
+		
+		vi  index.html
+		
+			hello
+			
+Step-6    git status
+	
+		   git add index.html
+		   
+			git  commit  -m "Demo data addded "
+
+Step-7 Again add some data in index.html
+
+		
+		Repeat step-6
+		
+Step-8  git log --oneline
+
+
+		git log 
+		
+Step-9  git config --list
+
+--------------------------------------------		
+Step-10   Account create on github 
+
+
+
+					

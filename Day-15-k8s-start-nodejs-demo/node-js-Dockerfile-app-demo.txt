@@ -1,0 +1,36 @@
+Dockerfile
+--------------------------------------
+FROM rockylinux:9.3.20231119
+
+MAINTAINER "tg@gmail.com"
+
+RUN dnf update -y && \
+    dnf install -y  nodejs npm
+
+WORKDIR /myapp
+
+RUN npm install express
+
+COPY ./app1.js  /myapp
+
+COPY ./Dockerfile   /root
+
+EXPOSE 3000 8080
+
+CMD ["node","app1.js"]
+
+
+------------------------------------
+app1.js
+------------------------------------
+'use strict';
+const express =  require('express');
+const PORT = 8080;
+const HOST = '0.0.0.0';
+const app = express();
+app.get('/',(req,res) => {
+        res.send('Hello TG Students , Samajh nahi aaya ? please watch video when you have time\n');
+})
+app.listen(PORT,HOST);
+console.log('Running on http://${HOST}:${PORT}');
+-------------------------------------

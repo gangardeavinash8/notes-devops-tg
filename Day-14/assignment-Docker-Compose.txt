@@ -1,0 +1,13 @@
+Assigment :
+
+docker-compose file for Tomcat (8080)  connection with Mysql (3306) 
+--------------------------------------------------
+	Dockerhub -> Custom image path
+	
+	Dockerhub ->  custom mysql path
+	
+	Docker compose yaml file for tomcat + mysql 
+--------------------------------------------------	
+	send to cdtsbikaner@gmail.com
+--------------------------------------------------
+	

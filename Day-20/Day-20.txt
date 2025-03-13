@@ -1,0 +1,94 @@
+secret in k8s 
+--------------------------
+
+	sensetive information like:
+		 password ( Github / docker hub / IAM password)
+		 TLS / SSL certificate 
+		 Key / Value 
+		 account-no
+	
+kubectl  get secret --all-namespaces
+
+kubectl  describe secret bootstrap-token-351d0d  -n kube-system
+
+kubectl get secret bootstrap-token-351d0d  -o jsonpath='{.data}'  -n kube-system
+-------------------------------------
+Custom secret for mysql password :
+-------------------------------------
+kubectl create secret generic mydbinfo --from-literal=password=redhat -n mynewtg
+
+kubectl get secret mydbinfo -o jsonpath='{.data}'  -n mynewtg
+
+echo "cmVkaGF0"  |  base64 --decode
+
+--------------------------------------
+generic = TLS / ssl
+normal password = normal password  
+--------------------------------------
+
+
+Create dry-run yaml code generate for deployment 
+------------------------------------------------
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx.yaml
+
+------------------------------------------------------------------------------------------------
+
+configmap :
+
+	plain text / normal text information which can share among team. 
+	data in normal text 
+	
+
+kubectl get cm -n mynewtg 
+
+kubectl create cm dbdata --from-literal=password=tg@123 -n mynewtg
+
+kubectl  describe cm dbdata -n mynewtg 
+
+kubectl get all -n mynewtg 
+
+kubectl exec -ti  mysql-6776cd677f-ddnr4 -c mysql bash  -n mynewtg
+
+-----------------------------------------------------------------------------------------------
+
+Mysql gallera cluster must setup while we laungh build production 
+
+Doc for mysql gallera setup :
+
+https://blog.yasithab.com/centos/mariadb-galera-cluster-with-data-at-rest-and-data-in-transit-encryption-on-centos-7/
+
+-------------------------------------------------------------------------------------------------
+
+Scheduling topologies :
+
+	1. nodeName
+	2. nodeSelector
+	3. cordon / uncordon
+	4. taint and tolerance 
+	
+		Effects:
+			NoSchedule  -->  toleration
+			NoEffect -->  Migration app / data backup from one node to another 
+			PreferNoSchedule --> Soft version of NoSchedule 
+
+How to apply taint on workernode:
+		
+	kubectl taint no wn2.tg.com high=intenvise:NoSchedule -n mynewtg
+
+	kubectl describe no wn2.tg.com |  less
+	
+How to remove taint from node ?
+
+	kubectl taint no wn2.tg.com high=intenvise:NoSchedule-  -n mynewtg
+
+
+
+high    =  		intenvise
+key    equal      value
+
+----------------------------------------------------------------------
+     tolerations:
+      - key: high
+        operator: Equal
+        value: intensive
+        effect: NoSchedule

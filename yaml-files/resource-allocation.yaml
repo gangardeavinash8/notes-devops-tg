@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp11
+  namespace: mynewtg
+spec:
+  containers:
+    - name: c1
+      image: nginx:1.14
+      resources:
+        memory: "128Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "500m"
+   - name: c2
+     image: nginx:1.15
+     resources:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1024Mi"
+        cpu: "750m"

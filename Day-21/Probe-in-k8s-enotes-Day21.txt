@@ -1,0 +1,70 @@
+
+Probe in k8s cluster ?
+
+probe are used by k8s cluster as an indecator of the health and state of POD.
+
+				   PROBE
+		/			|		\
+  Liveness		Rediness	Startup 		
+		
+		
+1) Liveness prob ?
+
+	It will restart the failing of the container.
+	
+		livenessProbe  ( Responsibilty for the container of POD)
+			|
+		is there any deadlock 
+			|
+		  yes
+		   |
+		  restart container / pod 
+		  
+Ex: 
+
+spec:
+ restartPolicy: Never
+ container:
+  livenessProbe:
+   path:  /var/www/html/tgIndia
+   port: 8080
+   initialDelaySeconds: 15
+   periodSeconds: 10
+   
+ 
+2) redinessProbe 
+	Whereas failing readiness prob will stop our application from the service traffic ?
+	
+				Is pod ready to serve the network traffic ?
+							|
+							NO
+							 |
+						Remove the pod from the service of Load Balancer 
+					
+spec:
+ container:
+  redinessProbe:
+   httpGet:
+    path:  /var/www/html/tgIndia
+    port: 80
+    initialDelaySeconds: 15
+    periodSeconds: 10
+	
+3) 	startupProbe
+		|
+	 Is the container / pod  (Application) has started  ?  ( Tomcat / mysql / NodJS )	
+		|
+	   NO
+	    |
+	 keep liveness and rediness probe disabled and apply startupProbe 
+	 
+	 
+	 
+spec:
+ container:
+  startupProbe:
+   httpGet:
+    path:  /var/www/html/tgIndia
+    port: 80
+    failureThreshold: 15
+    periodSeconds: 10	

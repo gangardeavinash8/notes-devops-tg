@@ -1,0 +1,45 @@
+useradd -->  Add a new user by using this command
+	
+		 /etc/passwd  ( User info + shell name + home dir )
+		
+	* No password list here 
+
+ekam:x:1001:1001::/home/ekam:/bin/bash
+	
+		
+passwd  --> Password setup for any user 
+
+		/etc/shadow 
+		
+	* The password listed here encrypted ( md5 / sha1 )
+
+groupadd  -->  Group create 
+
+		/etc/group 
+		
+gpasswd  -->  Group password can be set
+
+		/etc/gshadow 
+		
+------------------------------------------------
+
+How many user have /bin/bash 
+
+cat   /etc/passwd  |  grep  /bin/bash    | wc -l
+
+
+how many users have /sbin/nologin shell 
+
+cat   /etc/passwd  |  grep  /sbin/nologin  | wc -l
+
+----------------------------------------------------------
+
+wc= word count 
+ -l -> no of lines 
+ 
+--------------------------------------------
+
+/bin	-> User bin  ( root / local user) 
+
+/sbin  -> System bin ( OS / root / kernel)
+

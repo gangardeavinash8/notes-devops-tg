@@ -1,0 +1,64 @@
+DevOps =  Soft Dev. and IT Operations
+Un-Managed services.
+
+Pre-requisites :
+
+	LINUX ( Centos /  RHEL / Ubuntu )
+
+Tools /topic:
+
+1. Linux ( Amazon/ Centos)
+2. Git  and Github 
+3. Docker
+4. K8s
+5. Jenkins	=> CI / CD 
+6. Nagios + Prometheous with grafana monitoring tool  
+
+PROJECT 
+-----------------------------------------------
+Ansible
+Teraform
+-----------------------------------------------
+
+DevOPS ?
+
+1. Little bit knowledge is require 
+
+2. Linux 
+------------------------------------------------
+Non-tech backround candidate can not do ?
+
+ ->  YES we can do.
+------------------------------------------------
+
+Why org needs a devops specialist ?
+
+	* Fast development
+	* High quality 
+	* Less Capex + Opex ex
+	* Min outage
+-------------------------------------------------
+OLD Soft dev. model:
+	Water fall model
+	
+-------------------------------------------------
+
+Agile framework -->  Soft Dev. 
+
+DevOps --> Sucessor of Agile framwork
+
+-------------------------------------------------
+Release --> test env. 
+
+Build  ---> Production (Final) 
+-------------------------------------------------
+
+
+GRAFANA DISPLAY / VISUALIZATION 
+
+	ZABIIX 
+	
+	Promethous 
+--------------------------------------------------
+	ELK -->  Elasticsearch + Logstash + Kibana
+--------------------------------------------------
