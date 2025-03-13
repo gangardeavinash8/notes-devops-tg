@@ -1,0 +1,157 @@
+**Proper Answers to Each Question**
+
+### 1. What is CI?  
+**Continuous Integration (CI)** is a development practice where developers frequently merge code changes into a shared repository. Automated builds and tests are triggered upon each integration, ensuring early detection of errors.
+
+### 2. What is the use of CI?  
+CI helps in automating the integration of code changes, reducing integration conflicts, detecting bugs early, and improving software quality. It ensures faster feedback loops for developers.
+
+### 3. What is DevOps?  
+**DevOps** is a combination of **Development (Dev)** and **Operations (Ops)** practices that focus on automation, collaboration, and continuous delivery to improve software development and deployment efficiency.
+
+### 4. What is CD?  
+CD stands for **Continuous Deployment** or **Continuous Delivery**:  
+- **Continuous Delivery** ensures code is always in a deployable state but requires manual approval for production deployment.  
+- **Continuous Deployment** automates the entire deployment process without manual intervention.
+
+### 5. What is Git?  
+**Git** is a distributed version control system used for tracking changes in source code. It allows multiple developers to collaborate efficiently and provides features like branching, merging, and history tracking.
+
+### 6. What is version control?  
+**Version control** is a system that records changes to a file or set of files over time so that specific versions can be retrieved later. It enables developers to track changes, revert to previous versions, and collaborate effectively.
+
+### 7. What is Continuous Deployment?  
+**Continuous Deployment (CD)** is the practice of automatically deploying every change that passes automated tests to production, eliminating the need for manual intervention.
+
+### 8. What is Continuous Testing?  
+**Continuous Testing** is the practice of running automated tests throughout the CI/CD pipeline to ensure that new code changes do not introduce bugs or break functionality.
+
+### 9. Why is Continuous Testing important?  
+Continuous Testing helps in identifying defects early, improving software quality, reducing the risk of deployment failures, and ensuring smooth application delivery.
+
+### 10. What is the DevOps pipeline?  
+A **DevOps pipeline** is an automated workflow that includes stages such as code integration, testing, building, containerization, deployment, and monitoring. Tools like Jenkins, Git, Docker, and Kubernetes are commonly used.
+
+### 11. What are the features of Jenkins?  
+Jenkins provides:
+- Automated build and deployment
+- Integration with various tools (Git, Docker, Kubernetes)
+- Plugin support for extended functionality
+- Distributed build execution
+- Scheduling and triggering of jobs
+
+### 12. What is Groovy in Jenkins?  
+**Groovy** is a scripting language used in Jenkins for writing pipeline scripts and automating CI/CD workflows.
+
+### 13. How do you install Jenkins?  
+On a Linux system:
+```
+yum install jenkins -y
+```
+
+### 14. Which commands can be used to begin Jenkins?  
+- `systemctl start jenkins.service` → Start Jenkins  
+- `systemctl enable jenkins.service` → Enable Jenkins at boot  
+- `systemctl status jenkins.service` → Check Jenkins status  
+
+### 15. What is "Continuous Integration" with reference to Jenkins?  
+In Jenkins, **Continuous Integration** means automatically fetching the latest code from a repository, running tests, and building the application to detect issues early.
+
+### 16. Differences between CI, CD (Delivery), and CD (Deployment)?  
+- **CI (Continuous Integration):** Merging and testing code changes frequently.
+- **CD (Continuous Delivery):** Ensuring code is always deployable, but deployment requires manual approval.
+- **CD (Continuous Deployment):** Fully automating deployment without manual approval.
+
+### 17. Name the three different types of pipelines in Jenkins?  
+- Freestyle Pipeline
+- Scripted Pipeline
+- Declarative Pipeline
+
+### 18. How can you set up a Jenkins job?  
+By navigating to **Jenkins Dashboard > New Item > Freestyle or Pipeline Job > Configure & Save**.
+
+### 19. Name the two components that Jenkins is mostly integrated with.  
+- Git
+- Docker
+
+### 20. Name some useful plugins in Jenkins.  
+- Git Plugin
+- Docker Plugin
+- Kubernetes Plugin
+
+### 21. How can you create a backup and copy files in Jenkins?  
+Copy the `JENKINS_HOME` directory to a backup location.
+
+### 22. How can you deploy a custom build of a core plugin?  
+Upload the `.hpi` file in **Manage Jenkins > Plugin Manager**.
+
+### 23. Steps to move or copy Jenkins from one server to another?  
+1. Backup `JENKINS_HOME`
+2. Copy it to the new server
+3. Install Jenkins
+4. Restore the `JENKINS_HOME` directory
+5. Restart Jenkins
+
+### 24. Name some CI tools other than Jenkins.  
+- GitHub Actions
+- GitLab CI/CD
+- CircleCI
+- Travis CI
+
+### 25. Explain how Jenkins works.  
+Jenkins automates software development by:
+1. Pulling code from Git
+2. Running automated tests
+3. Building the application
+4. Deploying it to staging/production
+
+### 26. What would you do if a Jenkins pipeline job fails?  
+Check the **Jenkins logs**, identify the issue, and fix the code or configuration.
+
+### 27. Differentiate between Maven, Ant, and Jenkins.  
+- **Maven:** A build automation tool that manages dependencies.
+- **Ant:** A Java-based build tool used for compiling and packaging.
+- **Jenkins:** A CI/CD tool that automates the build, test, and deployment processes.
+
+### 28. Differentiate between Bamboo and Jenkins.  
+- **Bamboo:** Paid CI/CD tool by Atlassian.
+- **Jenkins:** Open-source CI/CD tool with strong community support.
+
+### 29. How to integrate Git with Jenkins?  
+Install the **Git plugin** and configure credentials (SSH key or username/password).
+
+### 30. How to integrate Kubernetes with Jenkins?  
+Use **Jenkins Kubernetes Plugin** and configure **Kubernetes agents**.
+
+### 31. How to configure third-party tools in Jenkins?  
+Install plugins via **Manage Jenkins > Plugin Manager**.
+
+### 32. What to do if there is a broken build in Jenkins?  
+Check logs, identify the issue, fix it, and restart the build.
+
+### 33. How to deploy a custom build of a core plugin?  
+Use `image pull secret` for authentication with Docker registry.
+
+### 34. How to create a Multibranch Pipeline in Jenkins?  
+Use **Jenkins Multibranch Pipeline Plugin**.
+
+### 35. How can parameters be defined in Jenkins?  
+By selecting **This project is parameterized** in job settings.
+
+### 36. How does a Jenkins node agent communicate with the master?  
+Through **SSH, JNLP, or WebSockets**.
+
+### 37. What is the use of the JENKINS_HOME directory?  
+It stores Jenkins configurations, logs, and job data.
+
+### 38. What is a backup plugin in Jenkins?  
+**ThinBackup Plugin** is used to back up Jenkins data.
+
+### 39. What is a trigger in a Jenkins pipeline?  
+A mechanism to start a pipeline (e.g., Git push, scheduled build).
+
+### 40. What are the three security mechanisms Jenkins uses?  
+- User authentication
+- Role-based access control
+- API tokens
+

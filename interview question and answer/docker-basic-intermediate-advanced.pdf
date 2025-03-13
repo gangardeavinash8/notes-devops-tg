@@ -1,0 +1,199 @@
+**Docker Interview Questions and Answers**
+
+### **Basic Level Questions**
+
+**1. What is Docker, and how does it differ from virtual machines?**  
+Docker is a containerization platform that allows developers to package applications and their dependencies into containers. 
+Unlike virtual machines (VMs), Docker containers share the host OS kernel, making them lightweight and faster than VMs.
+
+**2. What are the advantages of using Docker?**  
+- Lightweight and efficient
+- Faster deployment
+- Portability across environments
+- Simplified dependency management
+- Scalability and automation support
+
+**3. Explain the Docker architecture.**  
+Docker follows a client-server architecture, comprising:
+- **Docker Client**: CLI or GUI to communicate with Docker Daemon
+- **Docker Daemon**: Manages Docker containers and images
+- **Docker Images**: Blueprints for containers
+- **Docker Containers**: Isolated runtime environments
+- **Docker Registries**: Store and distribute images
+
+**4. What is a Docker image?**  
+A Docker image is a lightweight, stand-alone package containing everything needed to run an application, including code, runtime
+libraries, and environment variables.
+
+**5. How are Docker containers different from Docker images?**  
+Docker images are templates, while containers are running instances of those images.
+
+**6. How can you create a Docker image?**  
+Using a **Dockerfile** with the command:
+```
+docker build -t my-image .
+```
+
+**7. What is a Dockerfile, and what purpose does it serve?**  
+A Dockerfile is a script containing instructions to build a Docker image.
+
+**8. What is Docker Hub?**  
+Docker Hub is a cloud-based repository for sharing container images.
+
+**9. How can you pull an image from Docker Hub?**  
+Use the command:
+```
+docker pull image-name
+```
+
+**10. How can you start a Docker container?**  
+```
+docker run -d --name container-name image-name
+```
+
+**11. How can you stop a running Docker container?**  
+```
+docker stop container-name
+```
+
+**12. How can you remove a Docker container?**  
+```
+docker rm container-name
+```
+
+**13. What are Docker volumes, and why are they used?**  
+Volumes provide persistent storage for Docker containers.
+
+**14. How can you mount a volume in a Docker container?**  
+```
+docker run -v /host/path:/container/path image-name
+```
+
+**15. What is Docker Compose, and what is its role?**  
+Docker Compose simplifies multi-container applications using a YAML file.
+
+**16. How can you define multiple containers using Docker Compose?**  
+Using a `docker-compose.yml` file.
+
+**17. What is Docker Swarm, and what is its purpose?**  
+Docker Swarm is Docker’s native orchestration tool for managing multiple containers.
+
+**18. How does Docker networking work?**  
+Docker provides different network modes: **Bridge, Host, Overlay, and None**.
+
+**19. How can you scale Docker containers?**  
+Using `docker-compose scale` or Kubernetes.
+
+**20. What are some best practices for using Docker in production environments?**  
+- Use minimal base images
+- Implement security best practices
+- Optimize image size
+- Monitor container health
+
+---
+
+### **Intermediate Level Questions**
+
+**21. What is a Docker volume, and why would you use it?**  
+A Docker volume stores data persistently outside of the container lifecycle.
+
+**22. Explain the difference between a Docker image and a Docker container.**  
+A Docker image is a blueprint; a container is a running instance of an image.
+
+**23. How can you share data between containers in Docker?**  
+Using **volumes** or **bind mounts**.
+
+**24. What is Docker Compose, and how does it simplify the management of multi-container applications?**  
+Docker Compose allows defining and running multi-container applications using a single YAML file.
+
+**25. How do you handle environment-specific configurations in Docker Compose?**  
+Using **environment variables** in `docker-compose.yml`.
+
+**26. Explain Docker networking and its available modes.**  
+Docker supports **Bridge, Host, Overlay, and None** networking modes.
+
+**27. How can you expose ports in a Docker container?**  
+Using `-p` flag:
+```
+docker run -p 8080:80 image-name
+```
+
+**28. What are Docker labels, and how can you use them?**  
+Docker labels are key-value pairs used for metadata tagging.
+
+**29. Discuss container orchestration and the role of Kubernetes.**  
+Kubernetes manages containerized applications for scaling, networking, and deployment.
+
+**30. How do you deploy a multi-node Docker Swarm cluster?**  
+Using `docker swarm init` and `docker service create`.
+
+---
+
+### **Advanced Level Questions**
+
+**41. Explain Docker overlay networking.**  
+Overlay networks allow communication between containers across different hosts in a Swarm.
+
+**42. How can you achieve high availability in Docker Swarm?**  
+By deploying services in **replicated mode** and using multiple manager nodes.
+
+**43. Discuss the role of Kubernetes in managing Docker containers.**  
+Kubernetes automates container deployment, scaling, and networking.
+
+**44. Explain the concept of a Docker stack.**  
+A Docker stack is a collection of services deployed using Docker Swarm.
+
+**45. How do you configure storage drivers in Docker?**  
+Using `--storage-driver` option.
+
+**46. What is containerd, and how does it differ from Docker Engine?**  
+Containerd is a lightweight container runtime, whereas Docker Engine includes additional tooling.
+
+**47. Discuss container runtime security measures.**  
+- Use minimal images
+- Enable Docker security scanning
+- Implement proper access control
+
+**48. How can you implement a blue-green deployment with Docker?**  
+By running two container versions and switching traffic between them.
+
+**49. Explain Docker secrets and how they differ from environment variables.**  
+Docker secrets securely store sensitive information like credentials.
+
+**50. How can you set up a private Docker registry?**  
+Using `docker registry` and self-hosting it.
+
+---
+
+### **Production Issues & Best Practices**
+
+**61. What are common challenges in running Docker in production?**  
+- Security vulnerabilities
+- Networking issues
+- Storage and data persistence
+
+**62. How do you handle application logging in Docker?**  
+Using **Docker logging drivers** or centralized logging tools like ELK Stack.
+
+**63. How can you ensure Docker container security in production?**  
+- Use non-root users
+- Limit container privileges
+- Enable content trust
+
+**64. How can you ensure high availability and scalability for Docker containers?**  
+Using **Docker Swarm** or **Kubernetes**.
+
+**65. How do you handle rolling updates and zero-downtime deployments?**  
+Using `docker service update` or Kubernetes **RollingUpdate strategy**.
+
+**66. How do you handle persistent storage in Docker containers?**  
+Using **Docker volumes** or cloud storage solutions.
+
+**67. How do you handle container upgrades and patch management?**  
+Regularly rebuild images and use rolling updates.
+
+---
+
+This document provides detailed answers to commonly asked Docker interview questions, covering basic, intermediate
+advanced, and production-related topics.
+

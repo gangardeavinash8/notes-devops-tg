@@ -1,0 +1,215 @@
+
+
+**Kubernetes Interview Questions and Answers**
+
+### **1. What is Kubernetes?**  
+Kubernetes (K8s) is an open-source container orchestration platform used for **automating deployment, scaling, and management** of containerized applications. It allows managing multiple containers across distributed environments efficiently.
+
+### **2. How do you limit the resource usage of a pod?**  
+You can limit CPU and memory usage using **resource requests and limits** in a Pod specification:
+```yaml
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+```
+This ensures that the pod gets a guaranteed minimum resource (`requests`) and does not exceed the defined `limits`.
+
+### **3. What are Kubernetes services and their types?**  
+Kubernetes services expose applications running in a cluster. The main types of services are:
+- **ClusterIP (default)**: Exposes the service internally within the cluster.
+- **NodePort**: Exposes the service on a static port across all nodes.
+- **LoadBalancer**: Creates an external load balancer for cloud environments.
+- **ExternalName**: Maps a service to an external DNS name.
+
+### **4. What is a Kubernetes Namespace?**  
+Namespaces provide a way to **isolate** resources in a Kubernetes cluster. They are useful in multi-team environments where different projects need separate resource allocations.
+
+### **5. How do you monitor a Kubernetes cluster?**  
+Monitoring is done using tools like:
+- **Prometheus**: Metric collection and alerting.
+- **Grafana**: Data visualization.
+- **Nagios**: Infrastructure monitoring.
+- **kubectl logs & kubectl describe**: Basic pod-level monitoring.
+
+### **6. How do you check the logs of a running pod?**  
+Use the following command:
+```sh
+kubectl logs <pod-name>
+```
+For logs from all containers in a pod:
+```sh
+kubectl logs <pod-name> --all-containers=true
+```
+For real-time streaming logs:
+```sh
+kubectl logs -f <pod-name>
+```
+
+### **7. How do you expose a service externally?**  
+Change the service type to `NodePort` or `LoadBalancer` in the YAML configuration:
+```yaml
+spec:
+  type: NodePort
+```
+Or use an **Ingress Controller** for HTTP-based routing.
+
+### **8. What is a Persistent Volume (PV) and Persistent Volume Claim (PVC)?**  
+- **PV**: A cluster-wide storage resource.
+- **PVC**: A request by a pod for storage.
+
+Example:
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+### **9. How do you deploy a multi-container pod?**  
+Define multiple containers within the same Pod YAML:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+spec:
+  containers:
+  - name: app-container
+    image: nginx
+  - name: sidecar-container
+    image: busybox
+    command: ["sh", "-c", "echo Hello from sidecar"]
+```
+
+### **10. What are Labels and Selectors in Kubernetes?**  
+- **Labels**: Key-value pairs attached to resources for identification.
+- **Selectors**: Used to filter resources based on labels.
+
+Example:
+```yaml
+metadata:
+  labels:
+    environment: production
+```
+A service can select pods with:
+```yaml
+selector:
+  matchLabels:
+    environment: production
+```
+
+### **11. How do you schedule a pod on a specific node?**  
+Use the `nodeSelector` field in the Pod YAML:
+```yaml
+spec:
+  nodeSelector:
+    disktype: ssd
+```
+Or use **node affinity** for more flexible scheduling.
+
+### **12. What is a ReplicaSet? How is it different from ReplicationController?**  
+- **ReplicaSet** ensures a specified number of pod replicas are running.
+- **ReplicationController** is an older version, and ReplicaSet supports **matchExpressions** for advanced filtering.
+
+Example ReplicaSet YAML:
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: my-container
+        image: nginx
+```
+
+### **13. What is a DaemonSet?**  
+A DaemonSet ensures that a pod runs on **every node** in the cluster.
+
+Example:
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: logging-daemon
+spec:
+  selector:
+    matchLabels:
+      app: log-agent
+  template:
+    metadata:
+      labels:
+        app: log-agent
+    spec:
+      containers:
+      - name: log-agent
+        image: fluentd
+```
+
+### **14. What is the default service type in Kubernetes?**  
+The default service type is **ClusterIP**, which allows internal communication only.
+
+### **15. What is the difference between a Pod and a Deployment?**  
+- **Pod**: A single instance of an application.
+- **Deployment**: Manages multiple pod replicas and allows rolling updates.
+
+### **16. How do you create a Kubernetes cluster?**  
+Using `kubeadm`:
+```sh
+kubeadm init
+```
+For managed clusters:
+- **AWS EKS**: `eksctl create cluster`
+- **Google GKE**: `gcloud container clusters create`
+
+### **17. What is etcd in Kubernetes?**  
+`etcd` is a distributed **key-value store** that Kubernetes uses for storing all cluster state and configurations.
+
+### **18. What is kube-proxy?**  
+Kube-proxy is responsible for **networking within the cluster**. It maintains network rules and forwards requests to the correct pods.
+
+### **19. What is Helm?**  
+Helm is a package manager for Kubernetes. It simplifies deployment using pre-configured templates called **charts**.
+
+Example:
+```sh
+helm install my-app stable/nginx
+```
+
+### **20. What is RBAC (Role-Based Access Control) in Kubernetes?**  
+RBAC is used to define **who** can access **what** in a cluster.
+
+Example Role:
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+```
+
+### **Final Thoughts**
+This guide covers **core Kubernetes concepts**. For **advanced preparation**, practice **RBAC, Helm, StatefulSets, and troubleshooting**. Good luck with your interview! 🚀
+
